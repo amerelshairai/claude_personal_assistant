@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "ask": [
+      "mcp__*delete*",
+      "mcp__*trash*",
+      "mcp__*cancel*",
+      "mcp__*send*",
+      "mcp__*reply*",
+      "mcp__*forward*",
+      "mcp__*spam*",
+      "mcp__*publish*",
+      "mcp__*archive*"
+    ],
+    "deny": [
+      "Bash(rm:*)",
+      "Bash(rmdir:*)",
+      "Bash(shred:*)",
+      "Bash(git clean:*)",
+      "Bash(git reset --hard:*)",
+      "PowerShell(Remove-Item *)",
+      "PowerShell(Clear-Content *)"
+    ]
+  }
+}
