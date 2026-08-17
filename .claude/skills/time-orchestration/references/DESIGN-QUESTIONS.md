@@ -80,3 +80,27 @@ in `references/test-scenarios/`.
      effort vs. remaining capacity between tomorrow and the due date).
   3. Buffer was being treated as a flat weekly figure — fixed to a 15% proportional
      rate applied to whatever window (day or week) is being computed.
+
+- **Scenario 2 — urgent mid-week work against a tight schedule**, run 2026-08-17 —
+  `references/test-scenarios/scenario-2-urgent-midweek/`. Ran the 13-step
+  sudden-circumstance protocol against a genuine 0h-capacity-remaining-today case
+  (a P1 client production emergency landing after today's capacity was already
+  spent). **Not yet resolved, flagged for Amer:**
+  1. No P1-vs-P1 tiebreaker exists in the priority mapping.
+  2. Unclear whether a reschedule that trades one client's deadline against another
+     client's emergency is Level 1 (execute-then-report) or should always surface as
+     NEEDS_YOU first — defaulted to surfacing it, not a confirmed rule.
+  3. Friday has no explicit `realistic_productive_hours_per_day` figure in
+     `memory/user.md` — approximated ~3.6h for this walkthrough.
+- **Scenario 3 — deadline colliding with a fixed commitment**, run 2026-08-17 —
+  `references/test-scenarios/scenario-3-deadline-collision/`. Ran calendar-
+  management's conflict protocol against two different clients needing Amer's
+  real-time presence in the same hour. Protocol held: no event with another
+  attendee was touched, everything surfaced as NEEDS_YOU with options. **Not yet
+  resolved, flagged for Amer:**
+  4. No representation exists for an unconfirmed, time-pinned client request — it
+     isn't a Todoist task (no flexible due date) and isn't yet a Calendar event
+     (unconfirmed). Should something log it the moment it's raised?
+  5. Confirmed (not really a gap, but worth recording): a request with a specific
+     clock-time requirement, once accepted, belongs on Calendar, not Todoist —
+     Todoist due dates stay date-only, not time-pinned.
