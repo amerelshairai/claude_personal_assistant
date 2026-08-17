@@ -24,10 +24,34 @@ Never plan from memory. Before any recommendation:
 ## The core calculation
 
 ```
-AVAILABLE  = working hours in window − Calendar commitments − buffer
-REQUIRED   = Σ estimated effort of tasks due in window
-GAP        = AVAILABLE − REQUIRED
+AVAILABLE = realistic_productive_hours_per_day (memory/user.md, by day type)
+            − extra Calendar commitments beyond that day's usual recurring pattern
+            − buffer
+REQUIRED  = Σ effort of tasks due in window
+            + Σ effort of tasks due later that must start now to hit their deadline
+GAP       = AVAILABLE − REQUIRED
 ```
+
+**AVAILABLE always sources from `memory/user.md`'s `realistic_productive_hours_per_day`
+for that day's type (6–7h full day, 3–4h university/club day) — never recomputed from
+the raw 6am–10pm window.** That figure already nets out the day's *usual* recurring
+pattern (the standard university lecture or club block). "Calendar commitments"
+subtracted on top of it means only *extra*, non-routine commitments — a one-off
+meeting, an unscheduled call — not the recurring lecture/club itself; subtracting
+that again would double-count it.
+
+**Buffer is a percentage (~15%, per `memory/user.md`), applied proportionally to
+whatever window is being computed** — a day or a week — never the flat weekly figure
+(~4h) subtracted from a single day's calculation.
+
+**REQUIRED means "must be started today to hit its deadline," not "due in window."**
+For each open task due within the next few days, check whether its remaining effort
+exceeds the remaining capacity between *tomorrow* and its due date (summing each of
+those days' AVAILABLE). If it does, the task can't wait — pull as much of it as fits
+into today's REQUIRED (up to today's AVAILABLE), and let the rest land on the
+following days' own REQUIRED calculations. A "due in window" test alone misses this:
+a large task due tomorrow can show 0 required today while actually needing all of
+today's capacity.
 
 State the numbers explicitly. If `GAP` is negative, that is an overload — name the
 size of it and recommend what moves. Never quietly assume everything fits.
@@ -78,7 +102,11 @@ Work type (Research / Build / Admin / Call — the same 4 categories as the
 ## Capacity numbers (from `memory/user.md`)
 
 - Deep-work block minimum length: 45 minutes.
-- Weekly buffer reserved for the unexpected: ~4 hours (~15%).
+- Buffer reserved for the unexpected: **15%** — apply this percentage to whichever
+  window is being computed (a day's or a week's realistic productive hours), not a
+  flat figure. `memory/user.md`'s ~4h/week is that 15% already applied to the ~27h
+  midpoint weekly figure, shown there as a reference instance, not a constant to
+  subtract from every calculation regardless of window size.
 - Realistic daily capacity: 6–7h on full days, 3–4h on university/club days.
 
 ## What's fixed vs. eligible to move

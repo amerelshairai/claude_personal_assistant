@@ -62,7 +62,21 @@ Already decided — do not re-ask:
 14. **Deprioritization order when overloaded:** strictly by Todoist priority tier —
     P4 gives way first, then P3, then P2; P1 is touched last. Confirmed 2026-08-17.
 
-## Test scenarios
-To be built once A–C are locked, same pattern as `client-intelligence`: synthetic
-scenarios exercising the conventions (e.g. new urgent client work landing mid-week,
-a week that's already overloaded, a deadline conflicting with a fixed commitment).
+## Test scenarios — IN PROGRESS
+Data source confirmed 2026-08-17: **fully synthetic**, same as `client-intelligence`
+— invented Todoist/Calendar state, no calls to Amer's real accounts. Scenarios live
+in `references/test-scenarios/`.
+
+- **Scenario 1 — daily capacity check**, run 2026-08-17 —
+  `references/test-scenarios/scenario-1-daily-capacity/`. Exercised the core
+  AVAILABLE/REQUIRED/GAP calculation and priority-tier bucketing. Surfaced 3 real
+  gaps in the formula as written in SKILL.md, all fixed 2026-08-17, re-run confirmed
+  clean numbers:
+  1. AVAILABLE base was ambiguous (raw window vs. `memory/user.md`'s pre-netted
+     figure) — fixed to always source from `realistic_productive_hours_per_day`,
+     "Calendar commitments" now means only extra/non-routine commitments on top.
+  2. REQUIRED only counted tasks due strictly inside the window, missing near-term
+     deadlines needing today's time — fixed to a must-start-today test (remaining
+     effort vs. remaining capacity between tomorrow and the due date).
+  3. Buffer was being treated as a flat weekly figure — fixed to a 15% proportional
+     rate applied to whatever window (day or week) is being computed.
