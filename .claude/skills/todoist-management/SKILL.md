@@ -6,9 +6,10 @@ when_to_use: Triggers on "add to Todoist", "create tasks", "reorganize my tasks"
 
 # Todoist Management
 
-> **STATUS: METHODOLOGY DEFINED.** Contract and conventions below are decided (see
-> `../time-orchestration/references/DESIGN-QUESTIONS.md` §A for the full reasoning
-> behind each). Test scenarios still pending.
+> **STATUS: TESTED.** Contract and conventions below are decided and exercised
+> against the time-orchestration trio's 3 synthetic test scenarios — see
+> `../time-orchestration/references/DESIGN-QUESTIONS.md` for the full reasoning and
+> every fix each scenario produced.
 
 Todoist holds **workload** — what Amer must accomplish. It does not hold meetings;
 those live in Calendar.

@@ -6,9 +6,10 @@ when_to_use: Triggers on "what's on my calendar", "block time for", "when am I f
 
 # Calendar Management
 
-> **STATUS: METHODOLOGY DEFINED.** Contract and conventions below are decided (see
-> `../time-orchestration/references/DESIGN-QUESTIONS.md` §B for the full reasoning
-> behind each). Test scenarios still pending.
+> **STATUS: TESTED.** Contract and conventions below are decided and exercised
+> against the time-orchestration trio's 3 synthetic test scenarios — see
+> `../time-orchestration/references/DESIGN-QUESTIONS.md` for the full reasoning and
+> every fix each scenario produced.
 
 Calendar holds **fixed commitments** — meetings, university, appointments, events.
 It answers: *when is Amer already committed?* It is not the task system.

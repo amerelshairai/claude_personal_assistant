@@ -6,9 +6,13 @@ when_to_use: Triggers on "what should I do today", "can I fit this", "I have X h
 
 # Time Orchestration
 
-> **STATUS: METHODOLOGY DEFINED.** Contract and methodology below are decided (see
-> `references/DESIGN-QUESTIONS.md` §C for the full reasoning behind each). Test
-> scenarios still pending.
+> **STATUS: TESTED.** Contract and methodology below are decided and exercised
+> against 3 synthetic scenarios (daily capacity check, urgent mid-week work against a
+> tight schedule, a deadline colliding with a fixed commitment) — see
+> `references/DESIGN-QUESTIONS.md` for the full reasoning and every fix each
+> scenario produced. One follow-up remains open: real per-weekday capacity figures
+> for `memory/user.md` (Friday's shape differs from a Tuesday) — on Amer to fill in;
+> not a blocker to using this skill.
 
 This is the reasoning layer, not an execution layer. It decides *what should happen*.
 `todoist-management` and `calendar-management` carry out the changes.
