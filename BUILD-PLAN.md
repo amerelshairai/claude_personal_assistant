@@ -11,28 +11,36 @@
 - 9 skill scaffolds with fixed contracts and open questions
 - `client-analyst` subagent, tool-restricted so it cannot contact anyone or write to
   Todoist/Calendar
-- `memory/` templates (placeholders — must be filled)
+- `memory/` templates — **filled**: `user.md` + `business.md` (2026-08-16),
+  `preferences.md` (2026-08-17)
+- **`client-intelligence` — STATUS: TESTED.** Full methodology, `templates/
+  package-outline.md` filled, 4 synthetic test scenarios run (vague lead, clinic,
+  real estate, e-commerce) — see `.claude/skills/client-intelligence/references/
+  DESIGN-QUESTIONS.md`.
+- **`time-orchestration` + `todoist-management` + `calendar-management` — STATUS:
+  TESTED.** All 14 convention questions resolved, 3 synthetic test scenarios run
+  (daily capacity, urgent mid-week work, deadline collision) — see
+  `.claude/skills/time-orchestration/references/DESIGN-QUESTIONS.md`. One follow-up
+  open: real per-weekday capacity figures for `memory/user.md` (Friday differs from
+  a Tuesday) — on Amer to fill in, not a blocker.
 
 ## Not done
 
-Every skill is a contract without methodology. `templates/` is empty. `memory/` has no
-real values. No test scenarios exist.
+`business-analysis`, `automation-architecture`, `project-planning`,
+`document-production`, `execution-reporting` are still scaffolds without
+methodology. `templates/` (top-level, for document-production) is still empty.
 
 ## Order to build
 
-**1. Fill `memory/user.md` + `memory/business.md`** — blocks everything. Nothing can
-compute capacity or price without these.
+~~**1. Fill `memory/user.md` + `memory/business.md`**~~ — done.
 
-**2. `client-intelligence`** (spec §33) — answer `references/DESIGN-QUESTIONS.md`
-first, then write methodology, then fill `templates/package-outline.md`, then test on
-3 realistic scenarios including one with almost no information.
+~~**2. `client-intelligence`**~~ — done, TESTED.
 
-**3. `time-orchestration` + `todoist-management` + `calendar-management`** — build
-together; they are one loop. This trio is what you will use daily, and it is where a
-mistake is most visible. Define Todoist project structure and work-block conventions
-before writing any logic.
+~~**3. `time-orchestration` + `todoist-management` + `calendar-management`**~~ —
+done, TESTED.
 
-**4. `business-analysis`** — needs your rate and pricing model from step 1.
+**4. `business-analysis`** — needs your rate and pricing model from step 1 (in
+`memory/business.md`).
 
 **5. `automation-architecture`** — resolve n8n access first, then build the pattern
 library from workflows you have already shipped.
