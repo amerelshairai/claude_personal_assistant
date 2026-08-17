@@ -6,10 +6,36 @@ when_to_use: Triggers on "add to Todoist", "create tasks", "reorganize my tasks"
 
 # Todoist Management
 
-> **STATUS: SCAFFOLD.** Contract fixed; conventions to be defined with Amer.
+> **STATUS: METHODOLOGY DEFINED.** Contract and conventions below are decided (see
+> `../time-orchestration/references/DESIGN-QUESTIONS.md` §A for the full reasoning
+> behind each). Test scenarios still pending.
 
 Todoist holds **workload** — what Amer must accomplish. It does not hold meetings;
 those live in Calendar.
+
+## Conventions
+
+- **Project structure:** one Todoist project per client. Internal/business-admin work
+  (not tied to a specific client) gets its own project too.
+- **Labels:** a work-type label — **Research / Build / Admin / Call** — plus a
+  delegable-to-Claude flag label. Work-type also drives effort-estimation heuristics
+  in `time-orchestration`.
+- **Priority (P1–P4):** client-facing work defaults to P1/P2, internal/admin work
+  defaults to P3/P4. Within each tier, deadline proximity splits it further:
+  - P1: client-facing, due within ~48h or overdue.
+  - P2: client-facing, not due within 48h.
+  - P3: internal, due within a week.
+  - P4: internal, no near deadline.
+  This is a **default** — `time-orchestration` reasons from it, but an explicit
+  instruction from Amer (e.g. university ranks above a client task right now)
+  overrides it regardless of P-tier.
+- **Effort estimate:** stored in Todoist's native Duration field, not the description
+  or a label.
+- **Task naming:** plain action-first title (e.g. "Build WhatsApp reminder flow") —
+  no phase prefix. The project already identifies the client; the work-type label
+  already identifies the category.
+- **Linking back to project files:** a reference line in the task description, e.g.
+  `Plan: projects/acme-corp/plan.md`.
 
 ## Authority
 
@@ -38,9 +64,5 @@ affected before executing a restructure of more than a few tasks.
 
 ## To define with Amer
 
-- Project structure: one project per client? per engagement?
-- Label taxonomy (client / type / energy level / delegable-to-Claude?)
-- Priority mapping: what makes something P1 vs P2?
-- Where estimated effort is stored (description, label, or duration field)
-- Naming convention for tasks generated from a project plan
-- How a Todoist task links back to `projects/<client>/`
+See `../time-orchestration/references/DESIGN-QUESTIONS.md` §A — built together with
+`time-orchestration` and `calendar-management` as one loop, per BUILD-PLAN.md.

@@ -6,7 +6,9 @@ when_to_use: Triggers on "what's on my calendar", "block time for", "when am I f
 
 # Calendar Management
 
-> **STATUS: SCAFFOLD.** Contract fixed; conventions to be defined with Amer.
+> **STATUS: METHODOLOGY DEFINED.** Contract and conventions below are decided (see
+> `../time-orchestration/references/DESIGN-QUESTIONS.md` §B for the full reasoning
+> behind each). Test scenarios still pending.
 
 Calendar holds **fixed commitments** — meetings, university, appointments, events.
 It answers: *when is Amer already committed?* It is not the task system.
@@ -35,16 +37,20 @@ Never silently move a meeting. Other people's time is not Claude's to reallocate
 
 ## Work block conventions
 
-- Title work blocks so they are obviously Claude-generated and safe to move.
+- **Title:** `[Work] <client> — <task>` — the `[Work]` prefix makes it instantly
+  obvious the block is Claude-generated and safe to move.
+- **Calendar:** primary calendar (not a dedicated one).
+- **Length:** minimum 45 minutes (per `memory/user.md` — below that, a block is
+  pointless). Maximum 2.5 hours as the default cap, but **dynamic based on need** — if
+  a task genuinely needs longer, don't force an arbitrary split just to respect the
+  cap.
+- **Buffer:** 30 minutes before/after fixed commitments before placing a work block.
+- **Busy/free:** marked **Busy** — work blocks represent real committed time, not
+  optional time.
 - Never place a work block over an existing commitment.
 - Respect Amer's timezone (Asia/Amman) and working hours from `memory/user.md`.
-- Leave transition buffer around meetings rather than butting blocks against them.
 
 ## To define with Amer
 
-- Work block title format (proposal: `[Work] <client> — <task>`)
-- Which calendar work blocks go on (primary vs a dedicated one — a dedicated
-  calendar makes bulk cleanup far safer)
-- Minimum and maximum block length
-- Buffer minutes around meetings
-- Whether blocks should be marked busy or free
+See `../time-orchestration/references/DESIGN-QUESTIONS.md` §B — built together with
+`time-orchestration` and `todoist-management` as one loop, per BUILD-PLAN.md.
