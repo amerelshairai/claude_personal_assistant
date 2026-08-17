@@ -6,13 +6,14 @@ when_to_use: Triggers on "new client", "this client wants", "analyze this client
 
 # Client Intelligence
 
-> **STATUS: METHODOLOGY DEFINED, PARTIALLY TESTED.** Contract and methodology below
-> are decided (see `references/DESIGN-QUESTIONS.md` for the full reasoning behind
-> each). Amer has flagged the KPI/ROI/discovery methodology as a first pass — expect
-> it to evolve as real client work exposes gaps. The synthetic vague-inbound-lead test
-> (§11 of DESIGN-QUESTIONS.md) has run — see `projects/test-vague-lead/`. The 2–3
-> real-client tests are still pending, deferred until Amer can walk through real
-> anonymized clients.
+> **STATUS: TESTED.** Contract and methodology below are decided and exercised
+> against 4 synthetic scenarios spanning the intended industry mix (vague inbound
+> lead, dermatology clinic, real-estate brokerage, e-commerce/support) — see
+> `references/DESIGN-QUESTIONS.md` §11 for the full log and every fix each scenario
+> produced. Amer has flagged the KPI/ROI/discovery methodology as a first pass —
+> still expect it to evolve once real client work runs through it; the 2–3 real-client
+> tests remain deferred until Amer has time to walk through anonymized clients, but
+> that's no longer a blocker to using this skill.
 
 ## Purpose
 
@@ -136,12 +137,22 @@ exposes gaps.
   investment against what the client will save, not subtracted from it.
 - Rigorous costing, pricing, and viability analysis is `business-analysis`'s job, not
   this skill's — see Hand-offs.
+- **Never invent a recovery/conversion/deflection rate to turn an exposure ceiling
+  into a promised dollar figure — at any scale.** This holds uniformly regardless of
+  how large the ceiling is; a bigger unverified number does more damage if wrong, not
+  less. What scales with the size of the figure is the caveat's *prominence*, not its
+  wording: for a large exposure figure, put the "this is a raw exposure, not a
+  forecast" caveat immediately next to the number itself (same sentence or the one
+  right after it, including in the Executive Summary) rather than deferring it to a
+  later ROI paragraph.
 
 ## Feature discovery methodology
 
 - **Standard checklist is the baseline** — every client is scanned against the same
   core patterns: manual intake/booking, lead follow-up delay, re-entered data across
-  systems, manual reminders/confirmations, plus other common patterns as the checklist
+  systems, manual reminders/confirmations, automated order-status/FAQ self-service
+  (added 2026-08-17, from the e-commerce test — deflects routine support tickets
+  before they reach a manual queue), plus other common patterns as the checklist
   matures (build out in `references/` over time). Keeps discovery consistent; nothing
   obvious gets missed.
 - **Beyond the checklist**: client-specific opportunities the checklist wouldn't catch
@@ -154,6 +165,19 @@ exposes gaps.
   Opportunities," labeled optional, each with its own small cost/effort estimate. Amer
   decides whether to offer it — never silently fold a nice-to-have into scope just
   because it's easy to build.
+
+## Vague or underspecified requirements
+
+A client ask that's real but too undefined to scope (e.g. "we also want something
+with our reviews") is **never** turned into a Recommended Feature or an Additional
+Value Opportunity, no matter how easy it would be to guess at. Route it to Missing
+Information / Questions for Client instead, always.
+
+If other findings elsewhere in the package suggest a plausible interpretation, note
+that interpretation there — under Missing Information / Questions for Client — as an
+**INFERRED hypothesis** with a confidence level per the evidence rules, so Amer has
+something concrete to confirm with the client rather than nothing. It still does not
+get promoted to a recommendation until confirmed.
 
 ## Opportunity ranking
 

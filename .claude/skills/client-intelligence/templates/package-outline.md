@@ -43,7 +43,9 @@ service → follow-up, or equivalent for the client's business).
 
 ## 8. Requirements
 What the client has explicitly asked for, in their own words where possible (direct
-quotes from meeting notes/documents are OBSERVED by definition).
+quotes from meeting notes/documents are OBSERVED by definition). A vague ask that's
+too undefined to scope still gets recorded here as stated — but never turned into a
+recommendation; see §25/§26 and SKILL.md § Vague or underspecified requirements.
 
 ## 9. Pain Points
 | Pain point | Evidence | Label | Confidence | Source |
@@ -104,7 +106,11 @@ here rather than estimating a dollar figure (see §19 ROI methodology).
 ## 19. ROI Analysis
 12-month horizon. State time-value and money-value separately (§16/§18). If money
 value can't be computed responsibly, present time/effort value only and say why. Do
-**not** net ongoing costs (§20) against this to produce a "net ROI" number.
+**not** net ongoing costs (§20) against this to produce a "net ROI" number. Never
+invent a recovery/conversion rate to turn an exposure ceiling into a promised dollar
+figure, regardless of the ceiling's size — for a large figure, put the "raw exposure,
+not a forecast" caveat immediately next to the number (including in the Executive
+Summary), not deferred to this section alone.
 
 ## 20. Cost Considerations
 Ongoing subscription/API/hosting cost — typically $60–80/month, $30 minimum — stated
@@ -141,7 +147,9 @@ adjacent clients only. Helpful but not mandatory: monthly volume, staff count.
 
 ## 26. Questions for Client
 Direct questions to close the gaps in §25, phrased ready to send/ask — not just a
-restatement of the gap.
+restatement of the gap. For a vague ask (§8), if other findings suggest a plausible
+interpretation, state it here as an INFERRED hypothesis with a confidence level — not
+as a recommendation — so there's something concrete to confirm.
 
 ## 27. Evidence and Confidence
 

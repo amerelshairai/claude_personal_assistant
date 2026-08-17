@@ -133,19 +133,42 @@ input or a deliberate decision. Do not guess.
 - `templates/package-outline.md` filled with prompts and table shapes for all 28
   sections, reflecting the decided methodology above.
 
-## 11. Test scenarios — PARTIALLY DONE, rest DEFERRED
-- Synthetic vague-inbound-lead case: **run 2026-08-17** — `projects/test-vague-lead/`.
-  Confirmed the missing-information path (§8/§25) works: almost every section
-  correctly resolves to UNKNOWN rather than a guess, essential vs. helpful gaps tier
-  correctly, and qualifying questions come out actionable. Surfaced two real gaps in
-  the methodology, now fixed in `SKILL.md`:
-  1. No guidance for when the client gives literally no business identifier
-     (name/website/handle) — research sequence had nothing to start from. Fixed:
-     skip straight to Missing Information rather than searching blind.
-  2. No guidance for when there's no observable signal at all to base even an ASSUMED
-     KPI baseline on (ASSUMED still needs something to reason from). Fixed: leave
-     UNKNOWN instead of forcing a guess.
-- Real client tests: Amer wants 2–3 real anonymized clients (spanning salon/clinic/
-  real-estate/e-commerce/support) rather than more synthetic scenarios, but deferred
-  providing the details — "will need so much time to explain it." Revisit when Amer
-  has time.
+## 11. Test scenarios — DONE (4 synthetic scenarios spanning the intended industry mix)
+- **Round 1 — vague inbound lead**, run 2026-08-17 — `projects/test-vague-lead/`.
+  Confirmed the missing-information path (§8/§25) works. Fixed in `SKILL.md`:
+  1. No guidance for zero business identifier — research sequence had nothing to
+     start from. Fixed: skip straight to Missing Information rather than searching
+     blind.
+  2. No guidance for zero observable signal for even an ASSUMED KPI baseline. Fixed:
+     leave UNKNOWN instead of forcing a guess.
+- **Round 2 — dermatology clinic (no-shows)**, run 2026-08-17 —
+  `projects/test-clinic-noshow/`. Exercised KPI baselines, dollar ROI, ranking, risk
+  analysis. Fixed in `SKILL.md`:
+  3. OBSERVED numeric claims now tag `(measured)` vs `(estimated)` — a client's own
+     guess isn't treated as precise as a tracked figure.
+  4. Health/medical-adjacent clients auto-elevate data risk to Medium-High and add
+     compliance rules as a conditional-essential missing-info item.
+- **Round 3 — real-estate brokerage (lead response delay)**, run 2026-08-17 —
+  `projects/test-realty-leadresponse/`. Contrast case: measured baseline, zero dollar
+  data by explicit client choice (not just unknown), no health-data angle. Confirmed
+  round 2's health-data rule correctly doesn't fire for a non-health client. The
+  declined-vs-unknown distinction Amer confirmed as **ad hoc per-scenario judgment,
+  not a fixed SKILL.md rule** — left out of the methodology deliberately.
+- **Round 4 — e-commerce/support (~400 orders/day)**, run 2026-08-17 —
+  `projects/test-ecom-support/`. Mirrors the example client profile in
+  `memory/business.md`. First test with real dollar data on both cost and revenue
+  sides — confirmed the no-invented-recovery-rate discipline still holds at much
+  larger dollar magnitudes. Fixed in `SKILL.md`:
+  5. Added "automated order-status/FAQ self-service" as a 5th standard checklist
+     pattern.
+  6. Vague-but-stated client asks ("something with our reviews") are never turned
+     into a recommendation — always routed to Missing Information; if other findings
+     suggest a plausible interpretation, note it there as an INFERRED hypothesis, not
+     a recommendation.
+  7. No recovery/conversion/deflection rate is ever invented to turn an exposure
+     ceiling into a dollar figure, at any scale — but the "raw exposure, not a
+     forecast" caveat's *placement* scales with the figure's size: for large numbers,
+     put it immediately next to the figure (including in the Executive Summary),
+     not deferred to the ROI section alone.
+- Covers the intended industry spread (salon/clinic, real estate, e-commerce/support)
+  plus the missing-information edge case. Status banner updated to TESTED.
