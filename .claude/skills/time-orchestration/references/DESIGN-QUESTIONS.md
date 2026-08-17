@@ -83,24 +83,25 @@ in `references/test-scenarios/`.
 
 - **Scenario 2 — urgent mid-week work against a tight schedule**, run 2026-08-17 —
   `references/test-scenarios/scenario-2-urgent-midweek/`. Ran the 13-step
-  sudden-circumstance protocol against a genuine 0h-capacity-remaining-today case
-  (a P1 client production emergency landing after today's capacity was already
-  spent). **Not yet resolved, flagged for Amer:**
-  1. No P1-vs-P1 tiebreaker exists in the priority mapping.
-  2. Unclear whether a reschedule that trades one client's deadline against another
-     client's emergency is Level 1 (execute-then-report) or should always surface as
-     NEEDS_YOU first — defaulted to surfacing it, not a confirmed rule.
-  3. Friday has no explicit `realistic_productive_hours_per_day` figure in
-     `memory/user.md` — approximated ~3.6h for this walkthrough.
+  sudden-circumstance protocol against a genuine 0h-capacity-remaining-today case.
+  3 findings, all resolved 2026-08-17:
+  1. **P1-vs-P1 tiebreak** — ties within any tier break by nearest deadline, no
+     special case for P1. Added to `todoist-management/SKILL.md`.
+  2. **Cross-client tradeoff authority** — now explicit policy in
+     `.claude/rules/execution-policy.md` § Cross-client scheduling tradeoffs: a
+     replan risking a *different* client's deadline always surfaces for approval
+     first, overriding the normal Level 1 reschedule authority.
+  3. **Friday capacity** — on Amer to fill in: real per-weekday capacity figures
+     replacing the single flat "university/club day" number in `memory/user.md`.
+     Pending; ~3.6h approximation stands until then.
 - **Scenario 3 — deadline colliding with a fixed commitment**, run 2026-08-17 —
   `references/test-scenarios/scenario-3-deadline-collision/`. Ran calendar-
   management's conflict protocol against two different clients needing Amer's
   real-time presence in the same hour. Protocol held: no event with another
-  attendee was touched, everything surfaced as NEEDS_YOU with options. **Not yet
-  resolved, flagged for Amer:**
-  4. No representation exists for an unconfirmed, time-pinned client request — it
-     isn't a Todoist task (no flexible due date) and isn't yet a Calendar event
-     (unconfirmed). Should something log it the moment it's raised?
-  5. Confirmed (not really a gap, but worth recording): a request with a specific
-     clock-time requirement, once accepted, belongs on Calendar, not Todoist —
-     Todoist due dates stay date-only, not time-pinned.
+  attendee was touched, everything surfaced as NEEDS_YOU with options. 2 findings,
+  both resolved 2026-08-17:
+  4. **Unconfirmed time-pinned requests** — represented as a tentative Calendar
+     event (`[Tentative] <client> — <what>`) from the moment they're raised, not a
+     new third state. Added to `calendar-management/SKILL.md`.
+  5. Confirmed, no change needed: once accepted, a specific-clock-time requirement
+     belongs on Calendar; Todoist due dates stay date-only.

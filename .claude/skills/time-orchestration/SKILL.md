@@ -123,4 +123,11 @@ Work type (Research / Build / Admin / Call — the same 4 categories as the
 Strictly by Todoist priority tier: **P4 gives way first, then P3, then P2 — P1 is
 touched last.** This is the default `time-orchestration` reasons from, not a hard
 rule — an explicit instruction from Amer overrides it regardless of P-tier (see
-`todoist-management` § Priority).
+`todoist-management` § Priority). **Ties within the same tier (including P1 vs. P1)
+break by nearest deadline** — same rule at every tier.
+
+**Cross-client exception:** if the only way to fit new work is a replan that would
+cause a *different* client's existing deadline to slip, that is not a normal Level 1
+reschedule — surface it for approval first, every time (see
+`.claude/rules/execution-policy.md` § Cross-client scheduling tradeoffs). State what
+slips and by how much; do not execute it unasked.

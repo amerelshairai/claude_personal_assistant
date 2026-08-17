@@ -47,20 +47,12 @@ NEEDS YOU
 
 ---
 
-## Flags for Amer's review (not yet resolved in SKILL.md)
+## Flags — resolved 2026-08-17
 
-1. **No representation for an unconfirmed, time-pinned client request.** Nova's
-   verification window isn't a Todoist task (it has no flexible due date, it's a
-   specific clock-time commitment) and isn't yet a Calendar event (it's not
-   confirmed/accepted). Right now it only exists in this conversation. Should
-   something like this get logged somewhere the moment it's raised — e.g., a
-   tentative/pending Calendar event, or a note in the relevant `projects/nova-home-
-   goods/` file — so it doesn't just live in chat history until resolved?
-2. **This scenario didn't hit a true "time-pinned Todoist task" case** (a task with a
-   specific clock-time requirement rather than a plain due date) — Nova's request
-   turned out to belong on Calendar once framed as an appointment-like commitment.
-   Worth confirming: is there ever a legitimate case for a *Todoist* task needing a
-   specific clock time rather than just a due date, or does anything with a specific
-   time-of-day always belong on Calendar instead, per the existing Todoist-vs-
-   Calendar split? If the latter, no methodology gap remains here — but it wasn't
-   explicit before this test.
+1. **Unconfirmed time-pinned requests:** represented as a tentative Calendar event
+   from the moment they're raised — titled `[Tentative] <client> — <what>` — not a
+   new third state. Once Amer accepts it, the `[Tentative]` prefix drops and it's a
+   normal confirmed event. Nova's verification window would have been logged this
+   way immediately, rather than living only in conversation.
+2. **Confirmed, no change needed:** a specific-clock-time requirement always belongs
+   on Calendar once accepted; Todoist due dates stay date-only.

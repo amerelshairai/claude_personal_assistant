@@ -65,6 +65,15 @@ If new work conflicts with an existing meeting: identify the conflict, present o
 ask before cancelling or making a consequential change. Never silently move or cancel
 a meeting with another attendee.
 
+## Cross-client scheduling tradeoffs
+
+Rescheduling Todoist tasks and Claude-created Calendar work blocks is normally
+Level 1 (execute, then report). **Exception:** if a replan would cause a *different*
+client's existing deadline to slip — not just reshuffle Amer's own time — that
+always surfaces for approval first. Never auto-execute it, even though an ordinary
+reschedule would otherwise qualify as Level 1. Identify the tradeoff, state what
+slips and by how much, and wait.
+
 ## Client privacy boundaries
 
 - Research only permitted public business information and material Amer supplies.

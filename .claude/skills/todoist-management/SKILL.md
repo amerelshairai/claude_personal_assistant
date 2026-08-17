@@ -29,6 +29,8 @@ those live in Calendar.
   This is a **default** — `time-orchestration` reasons from it, but an explicit
   instruction from Amer (e.g. university ranks above a client task right now)
   overrides it regardless of P-tier.
+  **Ties within the same tier — including P1 vs. P1 — break by nearest deadline**:
+  the task due soonest wins. Same rule at every tier, no special case for P1.
 - **Effort estimate:** stored in Todoist's native Duration field, not the description
   or a label.
 - **Task naming:** plain action-first title (e.g. "Build WhatsApp reminder flow") —

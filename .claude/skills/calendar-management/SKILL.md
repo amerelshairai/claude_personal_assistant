@@ -25,6 +25,15 @@ deep-work blocks.
 Level 3 (approval required): cancelling or rescheduling **any event with another
 attendee**, or any meeting Amer created. Deleting any event.
 
+## Unconfirmed, time-pinned requests
+
+A client request tied to a specific clock time (not just a due date) that Amer
+hasn't accepted yet — e.g. "we need you available 4–5pm Thursday for our platform
+update" — goes on the Calendar immediately as a **tentative event**, titled
+`[Tentative] <client> — <what>`. Not a new third state alongside Todoist/Calendar —
+it's a Calendar event from the start, just not yet confirmed. Once Amer accepts it,
+drop the `[Tentative]` prefix and it's a normal confirmed event like any other.
+
 ## Conflict protocol
 
 When new work collides with an existing meeting:

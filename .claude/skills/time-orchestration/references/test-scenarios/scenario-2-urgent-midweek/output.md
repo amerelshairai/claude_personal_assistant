@@ -75,19 +75,19 @@ NEEDS YOU
 
 ---
 
-## Flags for Amer's review (not yet resolved in SKILL.md)
+## Flags — resolved 2026-08-17
 
-1. **No P1-vs-P1 tiebreaker exists.** The priority mapping defines P1–P4 but nothing
-   for when two P1 items compete for the same capacity. Worth a rule (e.g., "active
-   harm to a live client outranks an on-track future deadline"), or left as
-   case-by-case judgment each time?
-2. **Cross-client tradeoff authority is unclear.** Rescheduling Todoist tasks/
-   Claude-created work blocks is Level 1 (execute-then-report) per execution-policy.
-   Does that authority extend to a reschedule that puts a *different client's*
-   existing deadline at risk, or should that specific shape of decision always
-   surface as NEEDS_YOU first, even though it's not a delete/cancel/external-contact
-   action? I defaulted to surfacing it this time — not a confirmed rule.
-3. **Friday has no explicit `realistic_productive_hours_per_day` figure** in
-   `memory/user.md` — only the raw 5–10pm window description. This walkthrough
-   approximated ~3.6h. Worth adding a real number to `memory/user.md` so this stops
-   being re-approximated per scenario.
+1. **P1-vs-P1 tiebreaker:** ties within the same tier break by nearest deadline —
+   same rule as every other tier, no special case. Applied here, Falcon's emergency
+   (needed today) beats Nova's Friday-due task on that basis alone, without needing
+   a separate "active harm" rule.
+2. **Cross-client tradeoff authority:** now explicit policy in
+   `.claude/rules/execution-policy.md` § Cross-client scheduling tradeoffs — a
+   replan that puts a *different* client's deadline at risk always surfaces for
+   approval first, never auto-executes, even though it would otherwise qualify as a
+   normal Level 1 reschedule. Confirms this walkthrough's judgment call was right,
+   now as a standing rule instead of an ad hoc choice.
+3. **Friday capacity:** on Amer to fill in — real per-weekday capacity figures are
+   being added to `memory/user.md` to replace the single flat "university/club day"
+   number, since Friday's shape (family time until 5pm, then 5–10pm) isn't the same
+   as a Tuesday. This walkthrough's ~3.6h approximation stands until that lands.
