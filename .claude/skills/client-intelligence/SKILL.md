@@ -6,11 +6,13 @@ when_to_use: Triggers on "new client", "this client wants", "analyze this client
 
 # Client Intelligence
 
-> **STATUS: METHODOLOGY DEFINED.** Contract and methodology below are decided (see
-> `references/DESIGN-QUESTIONS.md` for the full reasoning behind each). Amer has
-> flagged the KPI/ROI/discovery methodology as a first pass — expect it to evolve as
-> real client work exposes gaps. Test scenarios (§11 of DESIGN-QUESTIONS.md) are still
-> pending — deferred until Amer can walk through real anonymized clients.
+> **STATUS: METHODOLOGY DEFINED, PARTIALLY TESTED.** Contract and methodology below
+> are decided (see `references/DESIGN-QUESTIONS.md` for the full reasoning behind
+> each). Amer has flagged the KPI/ROI/discovery methodology as a first pass — expect
+> it to evolve as real client work exposes gaps. The synthetic vague-inbound-lead test
+> (§11 of DESIGN-QUESTIONS.md) has run — see `projects/test-vague-lead/`. The 2–3
+> real-client tests are still pending, deferred until Amer can walk through real
+> anonymized clients.
 
 ## Purpose
 
@@ -76,6 +78,11 @@ Escalating beyond the default pass is a judgment call, not a fixed rule — driv
 thin/ambiguous requirements or apparent high value, not a rigid trigger. Ask Amer if
 genuinely unsure whether to go deeper.
 
+If the client hasn't supplied a business name, website, or social handle, the sequence
+has nothing to start from — do not guess or search blind. Skip straight to Missing
+Information / Questions for Client (§25/§26) and stop there until an identifier comes
+back.
+
 Stop condition: work through the standard sequence by default. If that isn't enough to
 support the analysis, go beyond it — no fixed source or time cap; keep going until the
 package can be produced with confidence.
@@ -98,7 +105,10 @@ exposes gaps.
 5. Baseline: if the client hasn't measured it, don't invent a number — estimate a
    rough range from observable signals (order volume, review complaint patterns, staff
    size), label it **ASSUMED**, and list it under Missing Information / Questions for
-   Client so a real number can replace it later.
+   Client so a real number can replace it later. If there is no observable signal to
+   estimate from either — ASSUMED still needs something to reason from — leave the
+   baseline **UNKNOWN** rather than forcing a guess, and list it under Missing
+   Information.
 6. Estimated vs client-reported KPIs are distinguished by the OBSERVED/ASSUMED label —
    client-reported numbers are OBSERVED, estimated ones are ASSUMED.
 

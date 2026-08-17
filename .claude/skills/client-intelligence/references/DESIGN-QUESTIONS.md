@@ -121,10 +121,19 @@ input or a deliberate decision. Do not guess.
 - `templates/package-outline.md` filled with prompts and table shapes for all 28
   sections, reflecting the decided methodology above.
 
-## 11. Test scenarios — DEFERRED
-- Amer wants real anonymized clients (2–3, spanning salon/clinic/real-estate/
-  e-commerce/support) rather than synthetic scenarios, but deferred providing the
-  details — "will need so much time to explain it." Revisit when Amer has time.
-- If none of his real clients started as a vague inbound lead with almost no info,
-  keep that one case synthetic — it's deliberately testing the missing-information
-  path (§8/§25), not testing realism.
+## 11. Test scenarios — PARTIALLY DONE, rest DEFERRED
+- Synthetic vague-inbound-lead case: **run 2026-08-17** — `projects/test-vague-lead/`.
+  Confirmed the missing-information path (§8/§25) works: almost every section
+  correctly resolves to UNKNOWN rather than a guess, essential vs. helpful gaps tier
+  correctly, and qualifying questions come out actionable. Surfaced two real gaps in
+  the methodology, now fixed in `SKILL.md`:
+  1. No guidance for when the client gives literally no business identifier
+     (name/website/handle) — research sequence had nothing to start from. Fixed:
+     skip straight to Missing Information rather than searching blind.
+  2. No guidance for when there's no observable signal at all to base even an ASSUMED
+     KPI baseline on (ASSUMED still needs something to reason from). Fixed: leave
+     UNKNOWN instead of forcing a guess.
+- Real client tests: Amer wants 2–3 real anonymized clients (spanning salon/clinic/
+  real-estate/e-commerce/support) rather than more synthetic scenarios, but deferred
+  providing the details — "will need so much time to explain it." Revisit when Amer
+  has time.
