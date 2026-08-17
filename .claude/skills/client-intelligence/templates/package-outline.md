@@ -3,8 +3,9 @@
 Date: <YYYY-MM-DD> · Analyst: client-analyst · Sources: <count>
 
 > Every claim below carries **OBSERVED / INFERRED / ASSUMED / UNKNOWN**, and every
-> INFERRED/ASSUMED claim carries **High/Medium/Low** confidence. See `SKILL.md` for the
-> full methodology behind each section.
+> INFERRED/ASSUMED claim carries **High/Medium/Low** confidence. OBSERVED numeric
+> claims are tagged `(measured)` or `(estimated)` — see `SKILL.md` for the full
+> methodology behind each section.
 
 ## 1. Executive Summary
 3–5 sentences: who the client is, the single recommended solution, expected value
@@ -62,9 +63,10 @@ patterns, review responses) — INFERRED by nature; confidence per signal streng
 | KPI | Current baseline | Target | Gold bar (time/effort/profit) | Label | Confidence |
 | --- | ----------------- | ------ | ------------------------------ | ----- | ---------- |
 
-Baseline is OBSERVED if client-reported, ASSUMED (with a stated estimation basis) if
-not measured by the client — never invented without a basis. Pick 2–4 KPIs per
-opportunity from the type-appropriate checklist in `SKILL.md` § KPI methodology.
+Baseline is OBSERVED if client-reported — tag `(measured)` or `(estimated)` per
+SKILL.md — or ASSUMED (with a stated estimation basis) if not reported by the client
+at all — never invented without a basis. Pick 2–4 KPIs per opportunity from the
+type-appropriate checklist in `SKILL.md` § KPI methodology.
 
 ## 13. Automation Opportunities
 | Opportunity | Source (checklist pattern / beyond checklist) | Gold bar | Label | Confidence |
@@ -114,7 +116,8 @@ subtracted from it.
 | ---- | -------- | -------- | ---------- |
 
 Categories: technical, adoption, data, vendor, compliance, scope creep. Severity uses
-the same High/Medium/Low scale as confidence.
+the same High/Medium/Low scale as confidence. Health/medical-adjacent clients: data
+risk starts at Medium-High by default (see SKILL.md § Risk analysis).
 
 ## 22. Alternative Solutions
 Other approaches considered and why they were not the recommendation — including
@@ -133,7 +136,8 @@ dimension drove each ranking decision when it isn't obvious.
 | --- | -------------------------- | ------ |
 
 Essential: current tools/systems in use; a client-articulated pain point/gap.
-Helpful but not mandatory: monthly volume, staff count.
+Conditional essential: applicable data-privacy/compliance rules, for health/medical-
+adjacent clients only. Helpful but not mandatory: monthly volume, staff count.
 
 ## 26. Questions for Client
 Direct questions to close the gaps in §25, phrased ready to send/ask — not just a

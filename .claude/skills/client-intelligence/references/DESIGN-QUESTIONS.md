@@ -27,6 +27,11 @@ input or a deliberate decision. Do not guess.
 - Medium — a reasonable inference from multiple consistent indirect signals.
 - Low — inferred from a single indirect signal, or a stretch/assumption.
 - A single indirect signal never exceeds Low, regardless of how strong it seems.
+- **Refinement (2026-08-17, from the clinic test scenario):** a client's own verbal
+  guess about their own business ("I'd say about 1 in 5") is still first-party, so it
+  stays OBSERVED — but OBSERVED numeric claims now carry a `(measured)` /
+  `(estimated)` tag so downstream skills (especially `business-analysis`) know not to
+  treat a guess as precise enough to justify a confident dollar figure on its own.
 
 ## 3. KPI methodology — DECIDED (Amer flagged this is a first pass, not fixed —
    revisit as real client work exposes gaps)
@@ -101,11 +106,18 @@ input or a deliberate decision. Do not guess.
   scope creep.
 - Severity: High/Medium/Low — same scale as confidence (§2), reused rather than
   introducing a separate scale.
+- **Refinement (2026-08-17, from the clinic test scenario):** health/medical-adjacent
+  clients automatically start the **data** risk at Medium-High rather than the
+  general default — patient-data regulatory exposure is higher by default,
+  independent of what's otherwise known about the client.
 
 ## 8. Missing-information detection — DECIDED
-- Required-info checklist, two tiers:
+- Required-info checklist, two tiers, plus one conditional tier:
   - Essential: current tools/systems/databases/contact systems in use; a
     client-articulated gap/pain point (e.g. "demand is outpacing production capacity").
+  - Conditional essential (2026-08-17, from the clinic test): for health/medical-
+    adjacent clients only, applicable data-privacy/compliance rules — pairs with the
+    §7 risk-severity refinement above.
   - Helpful but not mandatory: monthly volume, staff count.
 - These get captured primarily through client conversations — meeting notes are the
   main source of clarity here, not just public research. When missing, list under

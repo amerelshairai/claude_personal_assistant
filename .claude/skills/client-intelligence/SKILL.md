@@ -55,6 +55,13 @@ defect, not a style issue.
 - **OBSERVED**: one direct, first-party source is enough — the client's own website,
   their own social posts, their own meeting notes/documents speaking about their own
   work or business. Treat it as essential input to the analysis.
+- **OBSERVED numeric claims — measured vs. estimated**: when an OBSERVED claim is a
+  number, tag it `(measured)` if the client is citing a tracked figure from their own
+  records/system, or `(estimated)` if it's their own rough guess ("I'd say about...").
+  Both stay OBSERVED — it's still first-party — but the tag tells downstream skills
+  (especially `business-analysis`) how much weight the number can bear. An
+  `(estimated)` baseline shouldn't be treated as precise enough to justify a confident
+  dollar figure on its own.
 - **INFERRED / ASSUMED**: reasoning from indirect signals rather than a direct
   statement. A single indirect signal never exceeds **Low** confidence, no matter how
   strong it looks — multiple consistent signals can reach Medium; only a direct source
@@ -171,12 +178,21 @@ Check every opportunity against: **technical** (integration/breakage risk),
 
 Severity: **High/Medium/Low** — same scale as confidence, not a separate scale.
 
+**Health/medical-adjacent clients**: automatically raise the **data** risk to at least
+Medium-High, and add "applicable health/medical data-privacy compliance rules" as an
+extra **essential** missing-information item (below) — regulatory exposure for patient
+data is higher by default than for a typical retail/service client, independent of
+what else is known about the client.
+
 ## Missing-information detection
 
 Required-info checklist, two tiers:
 
 - **Essential**: current tools/systems/databases/contact systems in use; a
   client-articulated gap/pain point (e.g. "demand is outpacing production capacity").
+- **Conditional essential**: for health/medical-adjacent clients, applicable
+  data-privacy/compliance rules (see Risk analysis above) — essential for that client
+  type even though it isn't part of the universal two-item baseline.
 - **Helpful but not mandatory**: monthly volume, staff count.
 
 Captured primarily through client conversations — meeting notes are the main source of
