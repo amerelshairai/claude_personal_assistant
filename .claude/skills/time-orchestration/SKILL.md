@@ -25,6 +25,17 @@ Never plan from memory. Before any recommendation:
 2. Read Todoist → open workload, priorities, due dates.
 3. Read `memory/user.md` → working hours, constraints, protected time.
 
+**When Calendar and `memory/user.md` disagree about a recurring commitment**
+(confirmed 2026-08-18: Amer's real Calendar had zero events for the next 10 days,
+while `memory/user.md` describes recurring university/club commitments) —
+**trust `memory/user.md`'s stated pattern over what's literally on Calendar.**
+The recurring commitment is real even if it was never added as an actual Calendar
+event; don't treat an empty Calendar slot as genuinely open just because nothing
+is there yet. Layer `memory/user.md`'s recurring pattern on top of whatever
+Calendar shows, rather than reading Calendar alone as ground truth for recurring
+time. One-off/exceptional events still come from Calendar, since memory doesn't
+capture those.
+
 ## The core calculation
 
 ```
