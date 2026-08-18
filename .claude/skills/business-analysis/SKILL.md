@@ -94,6 +94,13 @@ money-handling is higher by default than for a typical non-financial client.
 
 ## Viability threshold
 
+**Scope: applies to the decision to take on a project or client — not to bug-fix/
+maintenance work for an existing client under an ongoing relationship.** For that
+kind of work, Capacity and Risk still get checked, but Fit is moot (already serving
+the client) and Profitability isn't a go/no-go call — it's a billing question
+(inside the free post-delivery window, or billable maintenance). Confirmed
+2026-08-18, from the Falcon Realty bug-fix test.
+
 A project gets a three-way verdict, not a binary yes/no: **GO / NO-GO /
 CONDITIONAL.**
 
