@@ -1,38 +1,32 @@
-# n8n access — unresolved
+# n8n access — resolved 2026-08-18
 
-As of scaffold creation, **no n8n connector is configured** in the environment this
-project was built in. Amer stated the agent has n8n execution capability; that
-capability was not observable, so it is recorded here rather than assumed.
+## Connection
+- n8n runs on Amer's **localhost**, exposed via a Cloudflare tunnel.
+- MCP connection: `https://pockets-overcome-back-forgot.trycloudflare.com/mcp-server/http`
+  — already configured as an MCP server in Claude (this satisfies option 1 from the
+  original unresolved note below).
+- Also available: a **webhook connector**, visible through Claude's connectors.
 
-**Do not claim to have created, tested, deployed or executed an n8n workflow unless a
-working n8n tool is actually present and returned a result.**
+## The catch — reconnection required every session
+The tunnel/MCP connection does **not** stay live session to session — Amer has to
+reconnect it manually each time before it's usable. A tool search for n8n tools may
+come back empty even when Amer believes it's connected, simply because it hasn't
+been reconnected yet this session. Confirmed empirically 2026-08-18: a tool search
+at the start of this conversation found no n8n tools available.
 
-## Options to resolve
+**Standing rule** (see `memory/operating-rules.md`, 2026-08-18): tell Amer explicitly
+*before* any n8n build/update-workflow stage starts, so he can reconnect first —
+don't wait for a tool call to fail mid-task.
 
-### 1. n8n MCP server (best)
-Community MCP servers exist for n8n. Adding one gives direct tool access to list,
-create, update, execute and inspect workflows.
+## Still to record once actually building against it
+- n8n version (node availability differs by version) — not yet confirmed.
+- Which environments exist (dev / prod) and which one Claude may touch.
+- Whether Claude may execute workflows or only create/modify them.
+- Production deployment approval step — **Level 3, always**, per
+  `automation-architecture/SKILL.md` § Permissions. Not affected by any of the above.
 
-```bash
-claude mcp add n8n --transport http https://<your-n8n-host>/mcp \
-  --header "Authorization: Bearer <token>"
-```
-
-Verify with `/mcp` in a session, then update this file with the actual tool names.
-
-### 2. n8n public REST API via Bash
-n8n exposes a REST API with an API key (Settings → n8n API). Claude can call it with
-`curl`. Workable, but every call needs the key available in the environment — use an
-env var, never a literal in a file.
-
-### 3. Design-only (current default)
-Produce workflow JSON that Amer imports manually via n8n's *Import from File*. Fully
-functional for design work, just not autonomous.
-
-## What to record once resolved
-
-- n8n base URL and version (node availability differs by version)
-- Auth method
-- Which environments exist (dev / prod) and which one Claude may touch
-- Whether Claude may execute workflows or only create them
-- The production deployment approval step (Level 3, always)
+## Fallback
+If the MCP connection isn't available and reconnecting isn't practical in the
+moment, `automation-architecture` still produces importable workflow JSON designs
+without executing against a live instance — see the STATUS note in `../SKILL.md`.
+Never claim a workflow was deployed or tested when it was only designed.

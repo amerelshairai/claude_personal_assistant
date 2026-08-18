@@ -8,10 +8,14 @@ when_to_use: Triggers on "design this automation", "how should I build", "n8n wo
 
 > **STATUS: SCAFFOLD.** Contract fixed; patterns library to be built.
 >
-> **ENVIRONMENT NOTE:** No n8n MCP connector is configured. Until one is added, this
-> skill designs and produces importable workflow JSON — it does not execute against a
-> live n8n instance. See `references/n8n-access.md`. Do not claim a workflow was
-> deployed or tested when it was only designed.
+> **ENVIRONMENT NOTE (updated 2026-08-18):** An n8n MCP connector is configured
+> (`references/n8n-access.md`), but it runs against Amer's localhost via a
+> Cloudflare tunnel that he must reconnect manually every session — it is not
+> reliably live. **Tell Amer before any build/update-workflow stage starts** so he
+> can reconnect first (see `memory/operating-rules.md`). If it's genuinely
+> unavailable, this skill still produces importable workflow JSON without executing
+> against a live instance. Do not claim a workflow was deployed or tested when it
+> was only designed, or when the connector wasn't actually confirmed live.
 
 ## Input → output
 
