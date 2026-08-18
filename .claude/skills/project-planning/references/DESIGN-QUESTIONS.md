@@ -67,3 +67,20 @@ relabeled.
   discount-cap gate (shows up as both a task and a mitigated risk-register entry),
   and correctly filtering client-intelligence's 4 general Nova missing-info items
   down to the 2 that actually apply to this specific feature.
+
+- **Scenario 2 — Petal & Stem Florist (fresh synthetic client), real deadline-
+  feasibility check + pre-price-demo milestone**, run 2026-08-18 —
+  `references/test-scenarios/scenario-2-petal-stem-deadline/`. Verified Google
+  Calendar and Todoist are both genuinely live with real read calls before
+  building the scenario (per Amer's explicit instruction not to trust a tooling
+  assumption). Found real Calendar empty for 10 days and Todoist with zero real
+  competing workload — used this to add a standing rule (Calendar-vs-memory
+  precedence for recurring commitments, in `time-orchestration/SKILL.md`) before
+  running the actual scenario. The scenario itself: a 2-day demo deadline fits
+  real capacity comfortably; the full-system 4-day deadline does **not** — a
+  genuine ~7.1h shortfall computed from real day-type capacity, not a fabricated
+  conflict. Resolved with a phased-delivery recommendation rather than forcing
+  overwork or a flat no. Also exercised the pre-price-demo milestone case
+  (inserted before scope/price lock, per the client's stated condition) and
+  confirmed this scenario's pipeline order stays correct — business-analysis is
+  flagged as needed *after* demo approval, not skipped the way Nova's was.
