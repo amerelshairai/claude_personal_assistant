@@ -21,7 +21,9 @@ when_to_use: Triggers on "design this automation", "how should I build", "n8n wo
 > connection carried over. If genuinely unavailable, this skill still produces
 > importable workflow JSON without executing against a live instance. Never claim a
 > workflow was deployed, tested, or executed without an actual tool result to show
-> for it.
+> for it. **`get_node_types` is currently broken** (see `references/n8n-access.md`)
+> — do not treat a `validate_workflow` pass as proof of correct node parameters
+> while it's down; flag exact parameters as unconfirmed instead.
 
 ## Input → output
 

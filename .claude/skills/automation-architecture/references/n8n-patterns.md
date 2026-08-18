@@ -9,5 +9,6 @@ invented ahead of time. Add an entry only after it's actually come up.
 | --- | --- | --- |
 | Customer support / inquiry handling | Webhook, or Telegram trigger | Matches whichever channel the client's customers actually use |
 | CRM building | Google Sheets trigger (often) | Depends on what the client already uses as their record store |
+| E-commerce cart-abandonment recovery | Checkout/cart-status event (webhook if the storefront supports it) or a polling query if not | Confirm webhook support before committing — added 2026-08-18 from the Nova Home Goods test, where this wasn't confirmed and had to be flagged ASSUMED |
 
 Confirmed by Amer, 2026-08-18.

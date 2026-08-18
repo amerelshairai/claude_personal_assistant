@@ -46,6 +46,19 @@ session-restart requirement as first guessed.
 `update_workflow` for changes → `archive_workflow` when retiring one). Follow this
 exactly — do not guess node parameter names; `get_node_types` is not optional.
 
+## Known issue: `get_node_types` is broken (found 2026-08-18)
+Every call fails with `Error: Invalid path - path traversal detected` — tested with
+a single simple node ID, no discriminators, and still failed. Isolated to this one
+tool: `get_sdk_reference`, `search_nodes`, and `validate_workflow` all work
+correctly. **This means exact node parameters cannot currently be confirmed**, and
+`validate_workflow` passing is **not** a safe substitute — it appears to check
+structural well-formedness, not per-node parameter correctness (confirmed by
+deliberately feeding it guessed WhatsApp node parameters, which it validated as
+`valid: true` anyway). Until this is fixed: treat any design's exact node
+parameters as unconfirmed/ASSUMED, flagged explicitly, never presented as verified
+just because `validate_workflow` passed. See
+`references/test-scenarios/scenario-2-connection-health/` for the full test.
+
 ## Permissions mapping, applying `../SKILL.md` § Permissions to the real tools
 - **Level 1 (execute, then report):** `search_workflows`, `get_workflow_details`,
   `create_workflow_from_code`, `update_workflow`, `validate_workflow`,

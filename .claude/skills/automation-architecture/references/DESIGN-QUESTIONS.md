@@ -48,6 +48,27 @@ business action, not the raw n8n node type), distinct shapes for trigger vs. act
 vs. condition/branch. Built to be extensible — adding a later feature should extend
 the diagram, not force a redraw.
 
-## Test scenarios
-To be built once 1–3 are locked, same pattern as every other skill: synthetic
-automation-design requests, run one at a time.
+## Test scenarios — IN PROGRESS
+Data source confirmed 2026-08-18: **combined** — fully synthetic is the priority
+default (matches every other skill), but some scenarios use the real, live n8n MCP
+connection for read-only/validate-only checks (connection health, whether a design
+is actually buildable). **Never a real build/create**, even in the live-tool
+scenarios.
+
+- **Scenario 1 — Nova Home Goods abandoned-cart recovery**, run 2026-08-18 —
+  `references/test-scenarios/scenario-1-nova-cart-recovery/`. Fully synthetic.
+  Exercised diagram-first documentation, trigger-selection reasoning (new
+  n8n-patterns.md entry added), DB/API-key precision, effort estimate feeding
+  `time-orchestration`'s baselines. **1 open flag:** whether a one-time-approved
+  discount cap (vs. per-send approval) satisfies the "human approval before an
+  irreversible step" non-negotiable element — not yet resolved.
+- **Scenario 2 — real n8n connection-health + logic check**, run 2026-08-18 —
+  `references/test-scenarios/scenario-2-connection-health/`. Live tools, read-only/
+  validate-only, nothing created. Confirmed `get_sdk_reference`, `search_nodes`,
+  `validate_workflow` all work correctly, and every node Scenario 1's design needs
+  actually exists. **Found a real bug:** `get_node_types` fails on every call
+  ("Invalid path - path traversal detected"), and `validate_workflow` passing does
+  **not** prove node parameters are correct — it validated a workflow with
+  deliberately guessed WhatsApp parameters as `valid: true`. Documented in
+  `n8n-access.md`; flagged for Amer to check whether this is a known issue with his
+  n8n MCP server build or tunnel setup.
