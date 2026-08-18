@@ -50,3 +50,16 @@ stack — one failure is enough):
 `time-orchestration` question — can this be delivered in time given current load),
 **not** the Profitability check. A tight deadline doesn't shift a rate up or down;
 it either fits or it doesn't, judged separately from margin.
+
+## Test scenarios
+
+- **Scenario 1 — greenfield build with a profitability tension**, run 2026-08-18 —
+  `references/test-scenarios/scenario-1-greenfield-profitability/`. TechFit Gym
+  (synthetic), 23.5h effort quoted at $400 by the client. 2 findings, both resolved
+  2026-08-18:
+  1. **Payment/billing risk-elevation rule** — added, mirrors `client-intelligence`'s
+     health-data rule: builds touching payment/billing start at Medium-High data
+     risk by default.
+  2. **Three-way verdict added: GO / NO-GO / CONDITIONAL** — business-analysis-
+     specific, not a new global task state. CONDITIONAL states what would change the
+     verdict to GO; reports as `WAITING_FOR_AMER`, never `REVIEW_REQUIRED`.

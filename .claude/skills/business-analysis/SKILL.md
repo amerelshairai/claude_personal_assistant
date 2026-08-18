@@ -32,7 +32,8 @@ Every costing separates:
 | One-time | Discovery, design, build, testing, documentation, handover |
 | Recurring | Hosting, API/LLM usage, subscriptions, monitoring |
 | Maintenance | Expected support hours per month, change requests |
-| Amer's time | Hours × internal rate — the real constraint |
+| Amer's time | Hours — the real constraint. No internal $/hour; judged directly
+  against the agreed price (see § Viability threshold, Profitability). |
 
 Never quote a build cost without the recurring and maintenance lines. That is the
 number that determines whether the client is actually happy in month six.
@@ -80,20 +81,45 @@ project type:
   phases. Diagnosis is inherently unpredictable — flag it **ASSUMED/Low confidence**
   by default, same discipline as thin-scope estimates elsewhere in the system.
 
+## Risk categories
+
+Same categories and severity scale as `client-intelligence`: **technical, adoption,
+data, vendor, compliance, scope creep** — High/Medium/Low.
+
+**Payment/billing-touching builds** (added 2026-08-18, from the TechFit Gym test —
+mirrors `client-intelligence`'s health-data rule): automatically raise the **data**
+risk to at least **Medium-High**, even if the build only pushes a payment link and
+never processes or stores card data directly. Regulatory/reputational exposure for
+money-handling is higher by default than for a typical non-financial client.
+
 ## Viability threshold
 
-A project is a **"no" if it fails any one** of these four — they don't need to
-stack:
+A project gets a three-way verdict, not a binary yes/no: **GO / NO-GO /
+CONDITIONAL.**
+
+- **GO** — clears all four checks below cleanly.
+- **NO-GO** — fails one or more checks and nothing recovers it. Say so plainly, with
+  the reason (per Honesty rules).
+- **CONDITIONAL** — fails a check, but something specific would fix it (a scope cut,
+  a price change, a timeline shift). State exactly what would need to change to
+  reach GO. **Report the task's state as `WAITING_FOR_AMER`** — this is a decision
+  only Amer can make, not a Level 2 artifact ready to review. Never label a
+  CONDITIONAL verdict `REVIEW_REQUIRED`; that state means something different (a
+  finished Level 2 artifact), not an open renegotiation call.
+
+Checked against these four — any one failing (without a fix available) is enough
+for NO-GO; a failing check with a fix available is CONDITIONAL:
 
 1. **Capacity** — doesn't fit even after replanning (a `time-orchestration`
    question), without dropping existing client commitments below acceptable
    minimums. A tight deadline affects this, not profitability.
 2. **Profitability** — the margin between the agreed price (from the pricing
    calculator + client negotiation) and the estimated effort doesn't clear an
-   acceptable floor, and no scope cut recovers it. Judgment call on the specific
-   price-vs-effort combination — never invent a $/hour figure to force a formula,
-   since no internal hourly rate is used.
-3. **Risk** — hits a risk category (compliance, data privacy, vendor dependency)
-   Amer isn't willing to accept regardless of price.
+   acceptable floor. Judgment call on the specific price-vs-effort combination —
+   never invent a $/hour figure to force a formula, since no internal hourly rate is
+   used. A scope cut or price renegotiation that would recover the margin makes this
+   CONDITIONAL, not NO-GO.
+3. **Risk** — hits a risk category (see above) Amer isn't willing to accept
+   regardless of price.
 4. **Fit** — genuinely outside Amer's skillset; delivering it poorly would cost more
    in reputation than the project is worth.
