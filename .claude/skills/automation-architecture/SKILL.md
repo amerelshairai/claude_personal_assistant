@@ -6,16 +6,22 @@ when_to_use: Triggers on "design this automation", "how should I build", "n8n wo
 
 # Automation Architecture
 
-> **STATUS: SCAFFOLD.** Contract fixed; patterns library to be built.
+> **STATUS: METHODOLOGY DEFINED.** Contract and methodology below are decided (see
+> `references/DESIGN-QUESTIONS.md` for the full reasoning behind each). Test
+> scenarios still pending.
 >
-> **ENVIRONMENT NOTE (updated 2026-08-18):** An n8n MCP connector is configured
-> (`references/n8n-access.md`), but it runs against Amer's localhost via a
-> Cloudflare tunnel that he must reconnect manually every session — it is not
-> reliably live. **Tell Amer before any build/update-workflow stage starts** so he
-> can reconnect first (see `memory/operating-rules.md`). If it's genuinely
-> unavailable, this skill still produces importable workflow JSON without executing
-> against a live instance. Do not claim a workflow was deployed or tested when it
-> was only designed, or when the connector wasn't actually confirmed live.
+> **ENVIRONMENT NOTE (updated 2026-08-18):** An n8n MCP connector is configured and
+> **confirmed live** (`references/n8n-access.md`) — 24 tools, verified by a real
+> `search_workflows` call returning Amer's actual workflows. It runs against
+> Amer's localhost via a Cloudflare tunnel that he must **reconnect manually every
+> session** — it is not reliably live session to session, even though it's working
+> right now. **Tell Amer before any build/update-workflow stage starts** so he can
+> reconnect first (see `memory/operating-rules.md`) — verify with a real read call
+> (e.g. `search_workflows`) before relying on it, don't assume a prior session's
+> connection carried over. If genuinely unavailable, this skill still produces
+> importable workflow JSON without executing against a live instance. Never claim a
+> workflow was deployed, tested, or executed without an actual tool result to show
+> for it.
 
 ## Input → output
 
@@ -57,9 +63,19 @@ Designing, building, modifying, testing and debugging automations is Level 1 —
 execute and report. **Deploying to production is Level 3** — always ask.
 Never delete a workflow.
 
-## To build
+## Trigger selection (not a fixed pattern library)
 
-- `references/n8n-patterns.md` — reusable node patterns Amer keeps rebuilding
-- `references/n8n-access.md` — how to connect n8n (MCP, REST API, or manual import)
-- `templates/workflow-design.md` — the standard design document shape
-- `templates/architecture-diagram.md` — Mermaid conventions for data flow diagrams
+There is no reusable node-sequence library — every design starts from what the
+client actually needs, not a template workflow. What recurs is **trigger choice by
+requirement type**; see `references/n8n-patterns.md` for the running list (grows
+from real projects, never invented ahead of time). E.g.: customer support →
+webhook/Telegram trigger; CRM-building → often a Google Sheets trigger.
+
+## Documentation style — diagram-first
+
+Amer avoids technical detail wherever possible and thinks in terms of *"the
+visualizing structure of how it works"* — **except** database and API-key handling,
+which stay fully precise, never glossed over. Every design leads with the
+architecture diagram (`templates/architecture-diagram.md`); everything else
+(WHY, dependencies, risks, cost, effort) stays in plain language. See
+`templates/workflow-design.md` for the full shape.
