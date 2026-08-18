@@ -19,16 +19,25 @@
   DESIGN-QUESTIONS.md`.
 - **`time-orchestration` + `todoist-management` + `calendar-management` — STATUS:
   TESTED.** All 14 convention questions resolved, 3 synthetic test scenarios run
-  (daily capacity, urgent mid-week work, deadline collision) — see
+  (daily capacity, urgent mid-week work, deadline collision), plus 2 more findings
+  from `business-analysis`'s tests folded back in (5th Todoist label `Bugfix`;
+  Bugfix REQUIRED uses the pessimistic range end, not the midpoint) — see
   `.claude/skills/time-orchestration/references/DESIGN-QUESTIONS.md`. One follow-up
   open: real per-weekday capacity figures for `memory/user.md` (Friday differs from
   a Tuesday) — on Amer to fill in, not a blocker.
+- **`business-analysis` — STATUS: TESTED.** Rate/margin/pricing model reused
+  directly from `memory/business.md`; 3 open questions resolved (ROI horizon,
+  effort multipliers by project type, viability threshold) plus 3 synthetic test
+  scenarios (greenfield, feature-addition, bug-fix/maintenance) — see
+  `.claude/skills/business-analysis/references/DESIGN-QUESTIONS.md`. Introduced a
+  GO/NO-GO/CONDITIONAL/NEEDS-REPRICING verdict system and a payment/billing
+  risk-elevation rule mirroring `client-intelligence`'s health-data rule.
 
 ## Not done
 
-`business-analysis`, `automation-architecture`, `project-planning`,
-`document-production`, `execution-reporting` are still scaffolds without
-methodology. `templates/` (top-level, for document-production) is still empty.
+`automation-architecture`, `project-planning`, `document-production`,
+`execution-reporting` are still scaffolds without methodology. `templates/`
+(top-level, for document-production) is still empty.
 
 ## Order to build
 
@@ -39,13 +48,13 @@ methodology. `templates/` (top-level, for document-production) is still empty.
 ~~**3. `time-orchestration` + `todoist-management` + `calendar-management`**~~ —
 done, TESTED.
 
-**4. `business-analysis`** — needs your rate and pricing model from step 1 (in
-`memory/business.md`).
+~~**4. `business-analysis`**~~ — done, TESTED.
 
 **5. `automation-architecture`** — resolve n8n access first, then build the pattern
 library from workflows you have already shipped.
 
-**6. `project-planning`** — depends on effort estimation heuristics from step 3.
+**6. `project-planning`** — depends on effort estimation heuristics from step 3
+(now in `time-orchestration`/`business-analysis`).
 
 **7. `document-production`** — house style, then templates.
 

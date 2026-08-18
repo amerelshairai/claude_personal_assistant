@@ -6,9 +6,10 @@ when_to_use: Triggers on "how much should I charge", "what will this cost", "is 
 
 # Business Analysis
 
-> **STATUS: METHODOLOGY DEFINED.** Contract and methodology below are decided (see
-> `references/DESIGN-QUESTIONS.md` for the full reasoning behind each). Test
-> scenarios still pending.
+> **STATUS: TESTED.** Contract and methodology below are decided and exercised
+> against 3 synthetic scenarios (greenfield build, feature-addition, bug-fix/
+> maintenance) — see `references/DESIGN-QUESTIONS.md` for the full reasoning and
+> every fix each scenario produced.
 
 ## Scope
 
