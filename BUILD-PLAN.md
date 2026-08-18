@@ -42,12 +42,23 @@
   check:** `get_node_types` fails on every call ("path traversal" error); until
   fixed, exact node parameters can't be confirmed and `validate_workflow` passing
   is not proof they're correct.
+- **`project-planning` — STATUS: TESTED.** Task granularity 1h minimum,
+  contingency buffer by project type (greenfield 20% / feature-addition 15% /
+  bug-fix none), standard-but-flexible milestone template, risk register reuses
+  the same 6 categories as `client-intelligence`/`business-analysis` — see
+  `.claude/skills/project-planning/references/DESIGN-QUESTIONS.md`. 2 test
+  scenarios: one found and closed a real pipeline-order gap (a feature reached
+  design/estimation before ever getting a `business-analysis` viability pass);
+  the other verified Google Calendar and Todoist are genuinely live with real
+  read calls (found Calendar empty for 10 days, Todoist with zero real workload)
+  and used that to compute a real deadline shortfall, not a fabricated one — which
+  led to a new standing rule (Calendar-vs-memory precedence for recurring
+  commitments) in `time-orchestration/SKILL.md`.
 
 ## Not done
 
-`project-planning`, `document-production`, `execution-reporting` are still
-scaffolds without methodology. `templates/` (top-level, for document-production)
-is still empty.
+`document-production`, `execution-reporting` are still scaffolds without
+methodology. `templates/` (top-level, for document-production) is still empty.
 
 ## Order to build
 
@@ -62,8 +73,7 @@ done, TESTED.
 
 ~~**5. `automation-architecture`**~~ — done, TESTED.
 
-**6. `project-planning`** — depends on effort estimation heuristics from step 3
-(now in `time-orchestration`/`business-analysis`).
+~~**6. `project-planning`**~~ — done, TESTED.
 
 **7. `document-production`** — house style, then templates.
 

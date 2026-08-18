@@ -6,9 +6,11 @@ when_to_use: Triggers on "plan this project", "break this down", "what's the wor
 
 # Project Planning
 
-> **STATUS: METHODOLOGY DEFINED.** Contract and methodology below are decided (see
-> `references/DESIGN-QUESTIONS.md` for the full reasoning behind each). Test
-> scenarios still pending.
+> **STATUS: TESTED.** Contract and methodology below are decided and exercised
+> against 2 scenarios (a cross-stage consistency check against prior artifacts for
+> an existing client, and a real deadline-feasibility check against verified live
+> Calendar/Todoist state for a fresh client) — see `references/DESIGN-QUESTIONS.md`
+> for the full reasoning and every fix each scenario produced.
 
 Sits between analysis and execution: takes a recommended solution and produces a plan
 that becomes real tasks and real scheduled time.
