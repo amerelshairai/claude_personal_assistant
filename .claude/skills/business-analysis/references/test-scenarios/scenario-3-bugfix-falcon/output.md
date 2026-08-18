@@ -72,22 +72,16 @@ NEEDS YOU
 
 ---
 
-## Flags for Amer's review (not yet resolved in SKILL.md/todoist-management)
+## Flags — resolved 2026-08-18
 
-1. **No Todoist label exists for bug-fix/maintenance work.** The taxonomy has
-   Research/Build/Admin/Call; `business-analysis` now treats bug-fix/maintenance as
-   a distinct project type with its own Diagnosis+Fix costing. Should a 5th label
-   (e.g. "Bugfix") be added to `todoist-management`, or does this work stay tagged
-   under one of the existing four for Todoist purposes while `business-analysis`
-   costs it differently regardless of label?
-2. **Urgent bug-fix capacity allocations may need default contingency.**
-   Time-orchestration allocated the original 3h estimate with zero spare capacity
-   that day. Given `business-analysis` now flags Diagnosis time as inherently
-   uncertain (ASSUMED/Low confidence) by default, should `time-orchestration` add a
-   standard contingency margin (e.g. pad urgent bug-fix estimates by some %) when
-   computing REQUIRED for that kind of task, rather than treating the point
-   estimate as certain?
-3. **Confirmed, no change needed:** GO/NO-GO/CONDITIONAL doesn't apply to bug-fix/
-   maintenance work for an existing client under an ongoing relationship — Capacity
-   and Risk checks still run, Fit and Profitability-as-a-gate don't. Worth stating
-   this explicitly in `SKILL.md` so it isn't re-derived ad hoc next time.
+1. **5th Todoist label added: `Bugfix`.** Added to `todoist-management/SKILL.md`
+   and `time-orchestration/SKILL.md`'s effort-estimation categories. A future
+   incident like this one would be tagged `Bugfix` from the start, not `Build`.
+2. **Bugfix capacity contingency added.** `time-orchestration/SKILL.md` now uses
+   the *pessimistic* end of the Diagnosis+Fix range for REQUIRED on Bugfix tasks
+   specifically — the one exception to every other work type using the midpoint —
+   directly fixing this incident's failure mode (optimistic point estimate,
+   zero spare capacity).
+3. **Confirmed, folded into `business-analysis/SKILL.md`:** GO/NO-GO/CONDITIONAL
+   doesn't apply to maintenance work for an existing client — Capacity and Risk
+   still run, Fit and Profitability-as-a-gate don't.

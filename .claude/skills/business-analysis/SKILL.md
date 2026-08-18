@@ -38,6 +38,23 @@ Every costing separates:
 Never quote a build cost without the recurring and maintenance lines. That is the
 number that determines whether the client is actually happy in month six.
 
+## Mid-project discovery overruns
+
+If discovery/diagnosis work reveals materially more effort than an already-agreed
+price covers — even though the client never asked for anything extra — treat it the
+same as a client-requested scope change: route through `memory/business.md`'s
+existing payment-plan-adjustment mechanism. Pause before absorbing the extra work
+silently, explain what discovery found, and bring a revised price/plan to Amer
+rather than continuing on the original number. The trigger differs (Amer's own
+discovery vs. the client asking for more) but the handling is the same either way.
+
+**Verdict: `NEEDS-REPRICING`** — distinct from GO/NO-GO/CONDITIONAL, which is a
+pre-commitment gate for a decision that hasn't happened yet. This situation is
+different: the commitment already exists, and the question is how to adjust it, not
+whether to make it. Report as `WAITING_FOR_AMER`, same as CONDITIONAL, but labeled
+`NEEDS-REPRICING` so a report never conflates "should I take this" with "this
+already-agreed deal needs revisiting."
+
 ## Honesty rules
 
 - State assumptions explicitly and label them **ASSUMED**.
@@ -77,9 +94,11 @@ project type:
   discovery/integration line** for understanding the existing system — never folded
   into the Build estimate, so "understanding" time stays visible from "building"
   time.
-- **Bug-fix/maintenance:** smaller baseline, split into **Diagnosis** + **Fix**
-  phases. Diagnosis is inherently unpredictable — flag it **ASSUMED/Low confidence**
-  by default, same discipline as thin-scope estimates elsewhere in the system.
+- **Bug-fix/maintenance:** tagged with its own `Bugfix` Todoist label (added
+  2026-08-18 — it never fit inside Build's 4–20h range). Split into **Diagnosis** +
+  **Fix** phases. Diagnosis is inherently unpredictable — flag it **ASSUMED/Low
+  confidence** by default, same discipline as thin-scope estimates elsewhere in the
+  system.
 
 ## Risk categories
 

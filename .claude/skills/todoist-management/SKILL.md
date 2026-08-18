@@ -18,9 +18,12 @@ those live in Calendar.
 
 - **Project structure:** one Todoist project per client. Internal/business-admin work
   (not tied to a specific client) gets its own project too.
-- **Labels:** a work-type label — **Research / Build / Admin / Call** — plus a
-  delegable-to-Claude flag label. Work-type also drives effort-estimation heuristics
-  in `time-orchestration`.
+- **Labels:** a work-type label — **Research / Build / Admin / Call / Bugfix** —
+  plus a delegable-to-Claude flag label. Work-type also drives effort-estimation
+  heuristics in `time-orchestration`. Bugfix added 2026-08-18 (from the Falcon
+  Realty test in `business-analysis`): bug-fix/maintenance work has a genuinely
+  different cost shape (Diagnosis + Fix, not a single Build-range estimate) and a
+  3h fix doesn't belong tagged under Build's own 4–20h range.
 - **Priority (P1–P4):** client-facing work defaults to P1/P2, internal/admin work
   defaults to P3/P4. Within each tier, deadline proximity splits it further:
   - P1: client-facing, due within ~48h or overdue.

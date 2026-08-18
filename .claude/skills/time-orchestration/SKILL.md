@@ -86,7 +86,7 @@ Protect existing deep-work blocks where possible; fragmenting them has a real co
 
 ## Effort estimation
 
-Work type (Research / Build / Admin / Call — the same 4 categories as the
+Work type (Research / Build / Admin / Call / Bugfix — the same 5 categories as the
 `todoist-management` label) drives the estimate.
 
 - **Learn from historical actuals over time.** Derive this fresh from Todoist each
@@ -100,6 +100,16 @@ Work type (Research / Build / Admin / Call — the same 4 categories as the
     20h-planned project can run to 50h)
   - Admin: 0.5–2h
   - Call: actual meeting length, not estimated
+  - Bugfix: Diagnosis + Fix, not a single range — see `business-analysis/SKILL.md`
+    § Effort multipliers.
+
+**Bugfix capacity contingency:** for every other work type, REQUIRED uses the
+midpoint estimate. **Bugfix is the one exception** — when computing REQUIRED for a
+Bugfix task, use the **pessimistic end** of the Diagnosis+Fix range, not the
+midpoint. Diagnosis is Low confidence by design and carries fat-tailed risk (a
+trivial cause vs. a rabbit hole) the other work types don't. Confirmed 2026-08-18,
+directly fixing the Falcon Realty failure mode: an optimistic point estimate
+allocated with zero spare capacity.
 - Pick within the range based on known task-scope details. Flag the estimate
   **ASSUMED, Low confidence** when scope is thin or no same-type history exists yet.
 

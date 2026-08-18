@@ -65,17 +65,14 @@ WAITING_FOR_AMER
 
 ---
 
-## Flags for Amer's review (not yet resolved in SKILL.md)
+## Flags — resolved 2026-08-18
 
-1. **No process exists for re-evaluating viability after a price is already
-   agreed**, when discovery (not a client request) reveals significantly more work
-   than planned. Should this route through the same "adjust the payment plan"
-   mechanism `memory/business.md` already describes for client-requested scope
-   changes, or does discovery-revealed complexity need its own explicit handling
-   (e.g., pause and get client sign-off before continuing past the discovery line)?
-2. **GO/NO-GO/CONDITIONAL was designed as a pre-commitment gate.** This scenario
-   shows it doesn't cleanly describe a mid-project repricing situation — applying it
-   mechanically produces a technically-correct-but-misleading "CONDITIONAL" label
-   for something that isn't a fresh go/no-go decision at all. Worth a distinct
-   verdict/state for "already committed, now needs repricing," or is stretching
-   CONDITIONAL to cover it acceptable?
+1. **Discovery overruns route through the same mechanism as client-requested scope
+   changes** — `memory/business.md`'s existing payment-plan-adjustment term, even
+   though the trigger here was Amer's own discovery, not a client ask. Added to
+   `business-analysis/SKILL.md` § Mid-project discovery overruns.
+2. **New verdict added: `NEEDS-REPRICING`**, distinct from GO/NO-GO/CONDITIONAL.
+   This scenario's actual verdict is `NEEDS-REPRICING`, not `CONDITIONAL` —
+   CONDITIONAL stays reserved for pre-commitment decisions; this situation is an
+   already-agreed deal that needs revisiting, a different thing. Reports as
+   `WAITING_FOR_AMER` either way.
