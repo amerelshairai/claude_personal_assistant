@@ -6,7 +6,9 @@ when_to_use: Triggers on "plan this project", "break this down", "what's the wor
 
 # Project Planning
 
-> **STATUS: SCAFFOLD.** Contract fixed; estimation model to be built.
+> **STATUS: METHODOLOGY DEFINED.** Contract and methodology below are decided (see
+> `references/DESIGN-QUESTIONS.md` for the full reasoning behind each). Test
+> scenarios still pending.
 
 Sits between analysis and execution: takes a recommended solution and produces a plan
 that becomes real tasks and real scheduled time.
@@ -45,10 +47,41 @@ Todoist task without rewriting: what, effort estimate, dependency, owner, due da
 Hand off: `todoist-management` creates the tasks → `time-orchestration` decides when →
 `calendar-management` blocks the time.
 
-## To define with Amer
+## Standard phases (from `memory/business.md`)
 
-- Standard project phases for his delivery model
-- Task granularity — smallest useful unit (1h? half-day?)
-- Contingency buffer percentage
-- Standard milestone / payment structure
-- The standard risk register categories
+2 discovery/scoping meetings → lands full technical workload/scope → build →
+deliver → optional enhancements if the client wants them.
+
+## Task granularity
+
+**1 hour minimum** per work-breakdown task — matches `time-orchestration`'s
+deep-work block minimum, rounded to a clean planning unit. Anything smaller isn't
+worth tracking as its own task.
+
+## Contingency buffer
+
+Applied on top of the chosen point estimate as scheduling slack, varying by
+project type (mirrors `business-analysis`'s effort multipliers):
+- **Greenfield build: 20%**
+- **Feature-addition: 15%**
+- **Bug-fix/maintenance: none** — already covered by `time-orchestration`'s
+  pessimistic-end REQUIRED calculation for Bugfix tasks; a second buffer here
+  would double-pad the same uncertainty.
+
+## Milestones
+
+Standard checkpoint template, but flexible — not a rigid mold:
+- Default: scope locked → build complete → delivered → post-delivery support
+  window starts.
+- Whether a milestone triggers payment is a separate fact from the client's
+  contract (`memory/business.md`), never assumed.
+- Insert exceptional milestones when a project genuinely needs one (e.g. a
+  demo/proof-of-concept *before* scope or price is locked) — recognize when the
+  default template doesn't fit rather than forcing every project into it.
+
+## Risk register
+
+Same 6 categories and severity scale as `client-intelligence` and
+`business-analysis`: technical, adoption, data, vendor, compliance, scope creep —
+High/Medium/Low. One consistent taxonomy from discovery through costing through
+planning.
