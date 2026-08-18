@@ -6,9 +6,10 @@ when_to_use: Triggers on "design this automation", "how should I build", "n8n wo
 
 # Automation Architecture
 
-> **STATUS: METHODOLOGY DEFINED.** Contract and methodology below are decided (see
-> `references/DESIGN-QUESTIONS.md` for the full reasoning behind each). Test
-> scenarios still pending.
+> **STATUS: TESTED.** Contract and methodology below are decided and exercised
+> against 2 scenarios (a fully synthetic design, and a real-n8n connection-health/
+> logic check) — see `references/DESIGN-QUESTIONS.md` for the full reasoning and
+> every fix each scenario produced.
 >
 > **ENVIRONMENT NOTE (updated 2026-08-18):** An n8n MCP connector is configured and
 > **confirmed live** (`references/n8n-access.md`) — 24 tools, verified by a real
@@ -56,7 +57,13 @@ A design without these is incomplete, not "v1":
 - **Error handling** — what happens when each external call fails
 - **Retry logic** — with backoff, and a dead-letter path
 - **Logging** — enough to debug a failure that happened three days ago
-- **Human approval points** — where a person must confirm before an irreversible step
+- **Human approval points** — where a person must confirm before an irreversible
+  step. For a recurring automated action bounded by a pre-approved cap (e.g. a
+  discount amount, a spend limit): **auto-execute under the cap, but pause and
+  notify Amer if a computed value would exceed it** — a per-run gate on every
+  normal execution would defeat the point of automating it, but a value outside
+  what he approved is exactly the case worth catching before it sends, not after.
+  Confirmed 2026-08-18, from the Nova cart-recovery test.
 - **Credential handling** — never hardcode; never put a real secret in a design doc
 
 ## Permissions

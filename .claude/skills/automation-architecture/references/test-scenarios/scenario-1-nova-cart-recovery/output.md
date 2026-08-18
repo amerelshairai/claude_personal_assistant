@@ -16,15 +16,23 @@ flowchart LR
     F --> G{"Ordered after message 1?"}
     G -->|Yes| H(["Recovered"])
     G -->|No| I["Wait 24 hours"]
-    I --> J[["Apply pre-approved discount cap"]]
-    J --> K["Send WhatsApp incentive message #2"]
+    I --> J[["Compute discount"]]
+    J --> M{"Within approved cap?"}
+    M -->|Yes| K["Send WhatsApp incentive message #2"]
+    M -->|No| N["Pause + notify Amer"]
     K --> L[["Log outcome"]]
 ```
 
 Trigger (stadium), external-system touchpoints (double-border: storefront query,
-discount-cap lookup, outcome log), plain-language actions, one branch each after
-message 1 and 2. Extends cleanly — a future message #3 or a different channel
-attaches after node K without redrawing the rest.
+discount computation, outcome log), plain-language actions, branches after message
+1 and after the cap check. Extends cleanly — a future message #3 or a different
+channel attaches after node K without redrawing the rest.
+
+**Node M/N added 2026-08-18** (resolving the flag originally left open here):
+auto-send stays fully automatic for every normal run under the cap; only a
+computed discount that would *exceed* the cap pauses the flow and notifies Amer,
+rather than either silently clamping it or gating every single send on manual
+approval.
 
 ## 2. Why
 Client's stated pain point (client-intelligence package): 68% cart abandonment,
@@ -80,18 +88,15 @@ specifically, since the storefront's webhook support isn't confirmed.
 - [x] Error handling — storefront query failure: log and retry, don't silently drop the cart from recovery
 - [x] Retry logic — WhatsApp send failures get a backoff retry; a dead-letter log entry after repeated failure, not a silent drop
 - [x] Logging — Node L logs outcome (recovered / not) for future ROI measurement
-- [ ] Human approval points — **flagged below, not confidently checked**
+- [x] Human approval points — auto-send under the pre-approved discount cap; pause
+  + notify Amer if a computed discount would exceed it (node M/N above)
 - [x] Credential handling — all three credentials (storefront, WhatsApp, discount cap) referenced, never hardcoded
 
 ---
 
-## Flag for Amer's review
-The discount cap is a **pre-approved config value Amer sets once**, not a live
-per-send approval step — because gating every single abandoned-cart message on a
-manual approval would defeat the point of automating this. That's a defensible
-reading of "human approval points... before an irreversible step," but it's a
-judgment call, not confirmed: does a one-time-approved cap satisfy that
-non-negotiable element for a recurring, per-customer irreversible action (sending a
-real discount), or does this specific kind of flow need something closer to a
-"pause if this run's proposed discount exceeds the cap, don't just silently clamp
-it"? Left unchecked in §8 above rather than silently marking it satisfied.
+## Flag — resolved 2026-08-18
+Resolved: auto-send stays fully automatic under the pre-approved cap; a computed
+discount that would exceed it pauses the flow and notifies Amer instead of sending
+or silently clamping. Added to the diagram (nodes M/N) and folded into
+`../SKILL.md` § Non-negotiable design elements as the general rule for any
+recurring automated action bounded by a pre-approved cap.

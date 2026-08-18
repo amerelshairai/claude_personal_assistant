@@ -59,9 +59,11 @@ scenarios.
   `references/test-scenarios/scenario-1-nova-cart-recovery/`. Fully synthetic.
   Exercised diagram-first documentation, trigger-selection reasoning (new
   n8n-patterns.md entry added), DB/API-key precision, effort estimate feeding
-  `time-orchestration`'s baselines. **1 open flag:** whether a one-time-approved
-  discount cap (vs. per-send approval) satisfies the "human approval before an
-  irreversible step" non-negotiable element — not yet resolved.
+  `time-orchestration`'s baselines. **1 flag, resolved 2026-08-18:** auto-send
+  stays automatic under the pre-approved discount cap; a computed value exceeding
+  it pauses the flow and notifies Amer instead of sending or silently clamping.
+  Folded into `SKILL.md` § Non-negotiable design elements as the general rule for
+  any recurring automated action bounded by a cap.
 - **Scenario 2 — real n8n connection-health + logic check**, run 2026-08-18 —
   `references/test-scenarios/scenario-2-connection-health/`. Live tools, read-only/
   validate-only, nothing created. Confirmed `get_sdk_reference`, `search_nodes`,

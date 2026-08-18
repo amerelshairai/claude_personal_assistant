@@ -32,12 +32,22 @@
   `.claude/skills/business-analysis/references/DESIGN-QUESTIONS.md`. Introduced a
   GO/NO-GO/CONDITIONAL/NEEDS-REPRICING verdict system and a payment/billing
   risk-elevation rule mirroring `client-intelligence`'s health-data rule.
+- **`automation-architecture` — STATUS: TESTED.** n8n MCP connection confirmed
+  live (24 tools, verified with a real `search_workflows` call). No fixed
+  node-pattern library — trigger selection tracked by requirement type instead
+  (`references/n8n-patterns.md`); documentation is diagram-first, plain language
+  except database/API-key handling. 2 test scenarios (synthetic design +
+  real-n8n connection-health check) — see `.claude/skills/automation-architecture/
+  references/DESIGN-QUESTIONS.md`. **Known issue found and documented, on Amer to
+  check:** `get_node_types` fails on every call ("path traversal" error); until
+  fixed, exact node parameters can't be confirmed and `validate_workflow` passing
+  is not proof they're correct.
 
 ## Not done
 
-`automation-architecture`, `project-planning`, `document-production`,
-`execution-reporting` are still scaffolds without methodology. `templates/`
-(top-level, for document-production) is still empty.
+`project-planning`, `document-production`, `execution-reporting` are still
+scaffolds without methodology. `templates/` (top-level, for document-production)
+is still empty.
 
 ## Order to build
 
@@ -50,8 +60,7 @@ done, TESTED.
 
 ~~**4. `business-analysis`**~~ — done, TESTED.
 
-**5. `automation-architecture`** — resolve n8n access first, then build the pattern
-library from workflows you have already shipped.
+~~**5. `automation-architecture`**~~ — done, TESTED.
 
 **6. `project-planning`** — depends on effort estimation heuristics from step 3
 (now in `time-orchestration`/`business-analysis`).
