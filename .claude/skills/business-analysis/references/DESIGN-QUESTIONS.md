@@ -89,3 +89,19 @@ it either fits or it doesn't, judged separately from margin.
   3. **Confirmed, folded into `SKILL.md`:** GO/NO-GO/CONDITIONAL does not apply to
      bug-fix/maintenance work for an existing client under an ongoing relationship —
      Capacity and Risk checks still run; Fit and Profitability-as-a-gate don't.
+
+- **Scenario 4 — Nova Home Goods cart-recovery, closing a pipeline-order gap**, run
+  2026-08-18 — `references/test-scenarios/scenario-4-nova-cart-recovery/`. Run
+  specifically because `project-planning`'s own test found this feature had reached
+  a technical design and an execution plan without ever passing through
+  business-analysis. **Verdict: GO.** Price anchor ~$500-650 (ASSUMED — genuinely no
+  prior client anchor existed, unlike Scenarios 1/2 which each had one). Risk
+  reasoned as **not elevated** despite superficially resembling TechFit Gym's
+  payment-touching case — the discount here is message content, not a touch on the
+  client's actual billing system, so the payment/billing auto-elevation rule
+  doesn't apply. Capacity left unconfirmed (no live `time-orchestration` read in
+  this test suite) but treated as a pre-scheduling step, not a GO/NO-GO blocker —
+  absence of a check isn't a failed check. No new methodology gaps found; this
+  scenario mainly demonstrated applying the existing framework correctly to a case
+  that doesn't fit either prior scenario's shape (no existing price, no
+  billing-system touch).

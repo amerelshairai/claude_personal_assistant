@@ -48,6 +48,22 @@ severity scale. One consistent taxonomy across discovery, costing, and planning 
 a risk identified early stays legible through the whole lifecycle without being
 relabeled.
 
-## Test scenarios
-To be built once 1–4 are locked, same pattern as every other skill: synthetic
-project-planning requests, run one at a time.
+## Test scenarios — IN PROGRESS
+
+- **Scenario 1 — Nova Home Goods cart-recovery plan, built entirely from prior
+  test artifacts**, run 2026-08-18 —
+  `references/test-scenarios/scenario-1-nova-cart-recovery-plan/`. Not synthetic
+  input — pulled numbers from `client-intelligence`, `business-analysis`, and
+  `automation-architecture`'s existing tests for the same client, per Amer's
+  instruction to check cross-stage consistency over in-isolation plausibility.
+  **Found a real pipeline-order gap**: automation-architecture had designed and
+  estimated this feature before business-analysis ever ran a viability/pricing
+  pass on it (unlike Nova's loyalty-points feature, which went through the
+  intended hand-off chain correctly). Flagged prominently rather than silently
+  produced a complete-looking plan. **Resolved same day** by running
+  `business-analysis` scenario 4 on the feature (verdict: GO) and updating this
+  plan's Objective, Milestones, Risks, and Required Amer inputs to reflect it.
+  Also confirmed 2 things carried forward cleanly: automation-architecture's
+  discount-cap gate (shows up as both a task and a mitigated risk-register entry),
+  and correctly filtering client-intelligence's 4 general Nova missing-info items
+  down to the 2 that actually apply to this specific feature.

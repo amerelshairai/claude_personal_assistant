@@ -1,27 +1,21 @@
 # Cross-stage consistency check (done first, per Amer's priority)
 
-## Finding 1 — real gap: business-analysis never costed this specific feature
-`business-analysis` has a Nova Home Goods test, but it's for **loyalty points**, a
-different feature — not cart-recovery. The only effort figure that exists for
-cart-recovery comes from `automation-architecture`'s technical-side estimate
-(~13h). **No GO/NO-GO/CONDITIONAL viability check has ever run on cart-recovery
-specifically** — no price was agreed, no margin was checked, no capacity check was
-run against it. This plan is being asked to build execution scaffolding on top of
-a design that skipped the costing/viability gate entirely for this feature.
+## Finding 1 — RESOLVED 2026-08-18: business-analysis pass now run
+`business-analysis` scenario 4 (`.claude/skills/business-analysis/references/
+test-scenarios/scenario-4-nova-cart-recovery/`) closed this gap: **verdict GO**.
+Recommended price anchor **~$500-650** (ASSUMED — not yet discussed with the
+client, since none existed before this pass). Risk stays **Medium, not elevated**
+— reasoned specifically that the payment/billing auto-elevation rule doesn't apply
+here (the discount is message content, not a touch on Nova's actual billing
+system, unlike TechFit Gym's payment-link case). Capacity remains unconfirmed
+(no live `time-orchestration` read in this test suite) but doesn't block the GO —
+confirm before scheduling, not before deciding.
 
-This is a **pipeline-order problem**, not a numbers mismatch: the intended hand-off
-is client-intelligence → business-analysis (price/viability) →
-automation-architecture (technical design) → project-planning (execution plan).
-For cart-recovery specifically, automation-architecture ran *before*
-business-analysis ever touched it. The loyalty-points feature went through the
-chain correctly; cart-recovery didn't.
-
-**This plan proceeds using automation-architecture's ~13h as the only available
-number, but flags every effort/cost figure below as pending a business-analysis
-pass** — not because the number is wrong, but because nothing has confirmed a
-client will pay for it or that it clears margin. Recommend running
-`business-analysis` on this feature before treating this plan as ready to execute,
-not after.
+This was a genuine pipeline-order problem, now closed: the intended hand-off is
+client-intelligence → business-analysis (price/viability) → automation-architecture
+(technical design) → project-planning (execution plan). Cart-recovery skipped the
+second step; it's now been run, after the fact but before this plan is treated as
+execution-ready.
 
 ## Finding 2 — the discount-cap gate carries forward correctly
 Automation-architecture's resolved flag (auto-send under a pre-approved discount
@@ -54,7 +48,8 @@ missing upstream viability check (Finding 1).
 Build the abandoned-cart recovery flow recommended in Nova's client-intelligence
 package. Targets the $38,250/day raw exposure ceiling — **stated as a ceiling, not
 a promised recovery**, consistent with business-analysis's and client-
-intelligence's discipline on this number.
+intelligence's discipline on this number. Business-analysis: **GO**, price anchor
+~$500-650 (ASSUMED, pending client conversation).
 
 ## Scope
 Order-status check → delayed recovery message → capped-discount incentive message
@@ -62,7 +57,9 @@ Order-status check → delayed recovery message → capped-discount incentive me
 
 **Out of scope**: Nova's support self-service opportunity (different feature,
 different plan), the unresolved "reviews" ask (still unscoped, per client-
-intelligence), and any pricing/contract work with the client (blocked on Finding 1).
+intelligence), and actually agreeing the price with the client (Amer's call, per
+business-analysis's hard boundary — the ~$500-650 figure is a recommendation, not
+an agreed number).
 
 ## Deliverables
 - Working n8n workflow matching the automation-architecture design (diagram +
@@ -98,10 +95,11 @@ Amer's available capacity that week, via `time-orchestration`. Not computed here
 without that input.
 
 ## Milestones
-Standard template applies: scope locked (**blocked on Finding 1 — no
-business-analysis pass yet**) → build complete → delivered → post-delivery support
-window starts. No exceptional pre-price demo milestone needed for this client
-(existing relationship, not a new prospect).
+Standard template applies: scope locked (technical scope is locked; **price still
+needs Amer to actually agree it with the client** — the ~$500-650 figure is a
+recommendation, not a milestone-clearing event on its own) → build complete →
+delivered → post-delivery support window starts. No exceptional pre-price demo
+milestone needed for this client (existing relationship, not a new prospect).
 
 ## Risks
 | Risk | Category | Severity | Mitigation |
@@ -109,9 +107,9 @@ window starts. No exceptional pre-price demo milestone needed for this client
 | Storefront has no clean checkout-abandonment signal | Technical | Medium | Task 1 confirms before Build starts |
 | Discount cap set too high, eroding margin | Data (financial) | Medium | Mitigated — pause/notify gate (Task 4), not silent auto-send |
 | Feels like spam to price-sensitive customers | Adoption | Low-Medium | Two-message cap, stop on response (per automation-architecture design) |
-| WhatsApp API cost scaling with ~850/day volume | Vendor | Medium | Confirm against business-analysis's cost estimate once that pass runs (Finding 1) |
+| WhatsApp API cost scaling with ~850/day volume | Vendor | Medium | Noted in business-analysis's cost model (scenario 4) — likely toward the higher end of the standard $60-80/mo range |
 | Automated messaging/discount offers may hit consumer-protection rules | Compliance | Low-Medium | Requires client answer — see below |
-| This plan proceeds without a viability/pricing decision | Scope creep / process | **High** | **Do not execute past Task 1 until business-analysis runs on this feature** |
+| Discount is message content, not a billing-system touch | Data (financial) | Not elevated | Confirmed by business-analysis (scenario 4) — reasoned distinct from TechFit Gym's payment-link case, doesn't trigger the payment/billing auto-elevation rule |
 
 ## Required client inputs (filtered to what actually blocks this build — Finding 3)
 1. Storefront checkout-status signal confirmation (also Task 1).
@@ -120,8 +118,10 @@ window starts. No exceptional pre-price demo milestone needed for this client
 
 ## Required Amer inputs
 - Discount-cap value, before Task 4.
-- Decision on Finding 1: run business-analysis now, or accept the process gap and
-  proceed on automation-architecture's number alone.
+- Agree a price with the client, using the ~$500-650 anchor from business-analysis
+  (scenario 4) as a starting point, not a fixed number.
+- Confirm capacity for this work via `time-orchestration` before scheduling
+  (business-analysis flagged this unconfirmed, not blocking the GO itself).
 
 ## Claude-executable work
 Tasks 2, 3, 4 (build), 5 (logging), 6 (docs) — all Level 1, execute-then-report.
@@ -136,13 +136,13 @@ Claude-executable.
 
 ## Deadline analysis
 No deadline was ever stated for this feature in any prior stage (unlike Nova's
-loyalty-points feature, which had a 1-week client deadline). Treat as backlog-
-priority work pending Finding 1's resolution, not time-pressured.
+loyalty-points feature, which had a 1-week client deadline). Treat as
+backlog-priority work, not time-pressured.
 
 ## Implementation sequence
-1. Resolve Finding 1 (business-analysis pass) — **recommended before anything
-   else**, not a hard blocker on Task 1 itself, but on treating this plan as
-   ready to execute.
+1. Amer agrees a price with the client (~$500-650 anchor) and confirms capacity —
+   both now unblocked by business-analysis's GO verdict, but still real steps
+   before build starts.
 2. Task 1 (client confirms checkout signal) — can run in parallel with step 1.
 3. Tasks 2 → 3 → 4 → 5 in sequence (each depends on the prior).
 4. Task 6 last.
@@ -151,10 +151,11 @@ priority work pending Finding 1's resolution, not time-pressured.
 ```
 PLANNED
 - Nova Home Goods cart-recovery plan produced, 13h raw / ~15.6h with contingency
+- business-analysis GO verdict obtained (scenario 4) -- pipeline-order gap closed
 
 NEEDS YOU
-- Finding 1: no business-analysis viability/pricing pass exists for this feature
-  -- recommend running it before executing this plan
+- Agree price with client (~$500-650 anchor, not fixed)
+- Confirm capacity via time-orchestration before scheduling
 - 3 client inputs needed (checkout signal, operating days/week, compliance rules)
 - Discount-cap value needed before Task 4
 ```
