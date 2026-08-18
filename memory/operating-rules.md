@@ -14,3 +14,11 @@
 - 2026-08-15 — Calendar is fixed commitments; Todoist is workload. Never merge them.
 - 2026-08-15 — Report all autonomous work. Never execute silently.
 - 2026-08-15 — Do not research Amer's personal profile for client work.
+- 2026-08-18 — n8n runs on Amer's localhost via a Cloudflare tunnel
+  (`https://pockets-overcome-back-forgot.trycloudflare.com/mcp-server/http`), and
+  the MCP connection has to be reconnected by Amer each time it's needed — it does
+  not stay live session to session. **Before any n8n build/update-workflow work
+  starts** (not just when a tool call fails), tell Amer explicitly that this stage
+  is coming so he can reconnect it first, rather than discovering the tool is
+  unavailable mid-task. Applies to `automation-architecture` primarily, but to any
+  skill that ends up touching n8n.
