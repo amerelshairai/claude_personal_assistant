@@ -25,6 +25,15 @@ AI and n8n automation consultancy.
 - Internal hourly rate: not used — Amer explicitly rejects hourly costing. Project hours vary too much (e.g. a project planned for 20h can run to 50h if problems surface, or finish faster than expected), so pricing is value-based per project, not hour-based.
 - Target margin: 70–80% net profit margin on a project, then split roughly in half with a technical partner who helps deliver the work (so Amer's effective net share is roughly 35–40%). Partner may later be folded into a separate agent once this one is built out.
 
+## Pricing tools
+- Pricing calculator: https://spectacular-rolypoly-88b380.netlify.app/ — computes
+  monthly usage/subscription cost (conversations × tokens × model price + markup,
+  plus setup/subscription fees) from the feature/usage scope a client wants. Amer's
+  actual process: run the client's requested scope through this tool to get a price
+  anchor, agree a price with the client from that, then separately estimate effort —
+  the margin between agreed price and effort cost is the profitability check (see
+  `business-analysis` skill). Confirmed 2026-08-18.
+
 ## Tooling stack
 - Automation: n8n
 - CRM: GoHighLevel

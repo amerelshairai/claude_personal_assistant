@@ -6,7 +6,9 @@ when_to_use: Triggers on "how much should I charge", "what will this cost", "is 
 
 # Business Analysis
 
-> **STATUS: SCAFFOLD.** Contract fixed; models to be built.
+> **STATUS: METHODOLOGY DEFINED.** Contract and methodology below are decided (see
+> `references/DESIGN-QUESTIONS.md` for the full reasoning behind each). Test
+> scenarios still pending.
 
 ## Scope
 
@@ -49,10 +51,49 @@ Comparison tables and financial models are usually clearer as spreadsheets — u
 `xlsx` skill for models with real numbers, and `document-production` for the
 narrative. Deliver to `projects/<client>/analysis/`.
 
-## To define with Amer
+## Pricing and margin (from `memory/business.md`)
 
-- Amer's internal hourly rate and target margin
-- Standard pricing model: fixed / hourly / value-based / retainer
-- Default ROI horizon
-- Effort multipliers by project type
-- The viability threshold — what makes a project a "no"
+No internal hourly rate — Amer explicitly rejects hourly costing. Value-based, fixed
+price per project. Target margin 70–80% net, ~35–40% net to Amer after the
+technical-partner split. Actual pricing process: run the client's requested
+feature/usage scope through the pricing calculator (`memory/business.md` § Pricing
+tools) to get a price anchor, agree a price with the client from that, then estimate
+effort separately.
+
+## ROI horizon
+
+**12 months** — same as `client-intelligence`, for consistency across skills.
+
+## Effort multipliers by project type
+
+Base ranges are `time-orchestration`'s Research/Build/Admin/Call baselines (Research
+1–4h, Build 4–20h, Admin 0.5–2h, Call = actual length). Applied differently by
+project type:
+
+- **Greenfield build:** ranges apply directly, at the widest end of contingency —
+  no existing system to anchor against, highest uncertainty.
+- **Feature-addition:** same Build range for the core work, **plus a separate
+  discovery/integration line** for understanding the existing system — never folded
+  into the Build estimate, so "understanding" time stays visible from "building"
+  time.
+- **Bug-fix/maintenance:** smaller baseline, split into **Diagnosis** + **Fix**
+  phases. Diagnosis is inherently unpredictable — flag it **ASSUMED/Low confidence**
+  by default, same discipline as thin-scope estimates elsewhere in the system.
+
+## Viability threshold
+
+A project is a **"no" if it fails any one** of these four — they don't need to
+stack:
+
+1. **Capacity** — doesn't fit even after replanning (a `time-orchestration`
+   question), without dropping existing client commitments below acceptable
+   minimums. A tight deadline affects this, not profitability.
+2. **Profitability** — the margin between the agreed price (from the pricing
+   calculator + client negotiation) and the estimated effort doesn't clear an
+   acceptable floor, and no scope cut recovers it. Judgment call on the specific
+   price-vs-effort combination — never invent a $/hour figure to force a formula,
+   since no internal hourly rate is used.
+3. **Risk** — hits a risk category (compliance, data privacy, vendor dependency)
+   Amer isn't willing to accept regardless of price.
+4. **Fit** — genuinely outside Amer's skillset; delivering it poorly would cost more
+   in reputation than the project is worth.
