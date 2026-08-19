@@ -6,7 +6,9 @@ when_to_use: Triggers on "write the documentation", "create a proposal", "make a
 
 # Document Production
 
-> **STATUS: SCAFFOLD.** Contract fixed; house style and templates to be built.
+> **STATUS: METHODOLOGY DEFINED.** Contract and methodology below are decided (see
+> `references/DESIGN-QUESTIONS.md` for the full reasoning behind each). Test
+> scenarios still pending.
 
 ## Use the format skills
 
@@ -49,10 +51,37 @@ Level 3: sending, publishing, or delivering any document to a client.
 - Cross-project reports → `reports/`
 - Reusable shapes → `templates/`
 
-## To build
+## House style
 
-- Amer's house style: fonts, colors, logo, header/footer
-- Proposal template
-- Technical documentation template
-- ROI / financial model workbook template
-- Meeting preparation one-pager template
+No real brand assets yet — **structure and readability over visual style**, per
+Amer directly ("there is no specific style," but "must be divided to topics and
+easy to search and read").
+
+- Font: default/standard professional font per tool (e.g. Calibri) — no custom
+  branding.
+- Colors: minimal, neutral — no assertive accent color.
+- **Every document**: clear heading hierarchy, a table of contents for longer
+  documents, descriptive section titles, PDF bookmarks/outline where supported.
+- No logo yet — text-based header. Page numbers in the footer; "Confidential" note
+  on client-facing documents only.
+
+## Templates
+
+- **Technical documentation** — not a separate template. Reuses
+  `automation-architecture/templates/workflow-design.md` content directly;
+  document-production's job is exporting it to a real file, not designing new
+  content.
+- **Proposal**: Overview → Recommended Solution (plain language, from
+  `automation-architecture`) → What's Included → Investment (price only, from
+  `business-analysis` — never internal margin/cost) → Payment Terms (per
+  `memory/business.md`) → Privacy & Data Handling → Timeline (from
+  `project-planning`'s milestones) → Next Steps. Template:
+  `templates/proposal.md`.
+- **ROI / financial model workbook** (xlsx): Cost breakdown → Time/financial
+  value (from `business-analysis`'s ROI methodology — never an invented recovery
+  rate) → 12-month projection. Client-facing version omits internal figures
+  entirely; an internal version with margin stays in `projects/<client>/analysis/`,
+  never delivered. Shape: `templates/roi-workbook.md`.
+- **Meeting-preparation one-pager** (internal only, never delivered): Who → Why
+  this meeting → Key facts to have ready → Open questions to raise → Decisions
+  needed from Amer. Template: `templates/meeting-prep.md`.

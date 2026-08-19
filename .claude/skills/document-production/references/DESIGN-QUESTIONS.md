@@ -1,0 +1,48 @@
+# document-production — decisions to make before full implementation
+
+Per BUILD-PLAN.md step 7.
+
+## 1. House style — DECIDED (2026-08-19)
+No real brand assets yet. **Structure and readability over visual style**:
+- Font: **default/standard professional font per tool** (e.g. Calibri for
+  Word-family documents) — no custom or branded font choice.
+- Colors: minimal, neutral — no assertive accent color mandated. Amer's own
+  words: "there is no specific style."
+- **Must be divided by topic and easy to search/read** — this is the actual
+  requirement, not visual polish: clear heading hierarchy (H1/H2/H3), a table of
+  contents for longer documents, descriptive section titles, PDF bookmarks/
+  outline where the format supports it.
+- No logo yet — text-based header (Amer's name/business line).
+- Header/footer: page numbers; "Confidential" note on client-facing docs only.
+
+## 2. Technical documentation template — DECIDED (2026-08-19)
+**Not a separate template.** Same document as `automation-architecture`'s
+`templates/workflow-design.md` (diagram-first, plain language except database/
+API-keys) — document-production's job is exporting that existing content to a
+real PDF/DOCX file, not designing new content.
+
+## 3. Proposal template — DECIDED (2026-08-19)
+Overview → Recommended Solution (from `automation-architecture`, plain language)
+→ What's Included (deliverables) → Investment (price only, from
+`business-analysis` — **never internal margin/cost**) → **Payment Terms**
+(deposit/schedule per `memory/business.md`'s standard terms, reviewed per
+contract) → **Privacy & Data Handling** (confidentiality commitment) → Timeline
+(from `project-planning`'s milestones) → Next Steps. The two bolded sections were
+Amer's explicit additions to the proposed shape.
+
+## 4. ROI / financial model workbook — DECIDED (2026-08-19)
+3 sheets: Cost breakdown (one-time/recurring/maintenance, from
+`business-analysis`'s cost model, client-facing — no internal margin) → Time/
+effort value + financial value where real cost data exists (`business-analysis`'s
+ROI methodology — never an invented recovery rate) → 12-month projection.
+**Client-facing version omits internal figures entirely**; an internal version
+(with margin) stays in `projects/<client>/analysis/`, never delivered.
+
+## 5. Meeting-preparation one-pager — DECIDED (2026-08-19)
+Who (client/attendees, relationship history) → Why this meeting (objective) →
+Key facts to have ready (pulled from whichever of `client-intelligence`/
+`business-analysis`/`project-planning` is relevant) → Open questions to raise →
+Decisions needed from Amer. **Internal only — never delivered to a client.**
+
+## Test scenarios
+To be built once 1–5 are locked, same pattern as every other skill.
