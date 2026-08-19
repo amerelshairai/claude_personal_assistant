@@ -43,6 +43,13 @@ Level 3: sending, publishing, or delivering any document to a client.
   (`-v2`, or a date suffix) rather than replacing it.
 - Client-facing documents never contain internal cost, margin, or internal notes.
   Check before producing.
+- **Never finalize a proposal's Investment figure without Amer explicitly
+  confirming the price first.** If `business-analysis` produced a range or an
+  ASSUMED figure rather than an agreed number, mark it `[AMER TO CONFIRM]` in the
+  draft and stop there — don't pick a midpoint, don't round to something
+  "reasonable." This applies every time a price hasn't been explicitly confirmed
+  by Amer, not just when the upstream figure happens to be a range. Confirmed
+  2026-08-19, from the Nova proposal test.
 
 ## Output locations
 

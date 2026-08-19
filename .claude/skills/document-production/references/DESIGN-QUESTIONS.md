@@ -59,6 +59,7 @@ Decisions needed from Amer. **Internal only — never delivered to a client.**
   produced a price *range*, not a single number — a finished proposal needs one
   figure. Handled by marking it `[AMER TO CONFIRM]` in the draft rather than
   silently picking a midpoint, consistent with business-analysis's pricing
-  hard boundary. Not a methodology gap requiring a SKILL.md change — the
-  boundary already existed, this scenario just confirmed it holds when a range
-  (not a point estimate) is the upstream input.
+  hard boundary. **Confirmed by Amer 2026-08-19 and promoted to an explicit hard
+  rule in `SKILL.md`**: a proposal's Investment figure is never finalized without
+  Amer's explicit confirmation — applies generally, not just to the range case
+  this scenario happened to surface.
