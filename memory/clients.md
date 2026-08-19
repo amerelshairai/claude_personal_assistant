@@ -15,4 +15,10 @@
 
 ---
 
-_No clients recorded yet._
+### Wisal Retreats
+- **Industry:** Travel / wellness retreats (women's and couples' international retreats)
+- **Relationship:** prospect
+- **What they bought:** nothing yet — first discovery meeting 2026-08-22
+- **Key contact:** Mohammed Mikdad ("Moe Meqdad"), founder
+- **Notes:** Low-trust posture toward outside help — stated directly, shapes how this engagement should be run (phased delivery, transparency). Wants a multi-platform (WhatsApp/Instagram/Messenger) AI lead-response + high-value-lead-detection + database system.
+- **Files:** `projects/wisal-retreats/`

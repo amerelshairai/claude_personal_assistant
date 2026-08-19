@@ -16,4 +16,10 @@
 
 ---
 
-_No active projects recorded yet._
+### Lead-gen AI system — Wisal Retreats
+- **State:** WAITING_FOR_CLIENT
+- **Deadline:** Discovery meeting 2026-08-22, 9:00 AM Asia/Amman (Calendar event created)
+- **Next action:** Amer runs the 2026-08-22 discovery meeting using the prep doc; then re-run `business-analysis` with real scope for a firm price anchor before quoting anything.
+- **Blocked on:** Mohammed's answers to the open questions in the intelligence package §26 (definition of "high-value lead," message volume, what "contact them" means, WhatsApp Business status) — nothing in scope can be finalized until then.
+- **Files:** `projects/wisal-retreats/`
+- **Updated:** 2026-08-19
