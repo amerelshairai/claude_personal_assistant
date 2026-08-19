@@ -64,10 +64,25 @@
   finalized without Amer's explicit confirmation) and an ROI workbook with every
   figure traced as a checked, correct formula. Meeting-prep template exists but
   wasn't scenario-tested, per Amer — not a blocker.
+- **`execution-reporting` — STATUS: TESTED.** Morning/evening reports stay
+  on-demand; weekly review is scheduled (Fridays 5pm Asia/Amman) as a persistent
+  cloud routine (`trig_01Wi4ehSPLZM9gjhtChVUQQe`) via the `schedule` skill, backed
+  by a new private GitHub repo
+  (`github.com/amerelshairai/claude_personal_assistant`) — see
+  `.claude/skills/execution-reporting/references/DESIGN-QUESTIONS.md` +
+  `references/test-scenarios.md`. Fired **twice against real Todoist/Calendar
+  data**, not synthetic: run 1 found the cloud routine couldn't push its own
+  output (GitHub App lacked write access — fixed by Amer, report recovered
+  manually); run 2's push was independently verified (`git log origin/master -1`
+  showed the real new commit). One open follow-up, not a blocker: recurring
+  university/club commitments haven't appeared in either real-data run —
+  possible wrong Google Calendar account, needs Amer to confirm.
 
 ## Not done
 
-`execution-reporting` is still a scaffold without methodology.
+Nothing — **all 8 build steps are done and TESTED.** Remaining work is the
+"Things to decide as you go" items below and any follow-ups noted per-skill above,
+not new skills.
 
 ## Order to build
 
@@ -86,8 +101,7 @@ done, TESTED.
 
 ~~**7. `document-production`**~~ — done, TESTED.
 
-**8. `execution-reporting`** — the format already works; add morning/evening routines
-last, once the underlying skills produce trustworthy numbers.
+~~**8. `execution-reporting`**~~ — done, TESTED. **Build plan complete.**
 
 ## How to build each one
 

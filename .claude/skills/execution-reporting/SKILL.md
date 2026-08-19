@@ -6,9 +6,13 @@ when_to_use: Triggers on "what did you do", "status", "where are things", "morni
 
 # Execution Reporting
 
-> **STATUS: METHODOLOGY DEFINED.** Format was already fixed and live; the
-> remaining questions are decided (see `references/DESIGN-QUESTIONS.md`). Test
-> scenarios still pending.
+> **STATUS: TESTED.** Format was already fixed and live; the remaining questions
+> are decided (see `references/DESIGN-QUESTIONS.md`). The weekly-review cloud
+> routine was fired twice against Amer's real Todoist/Calendar and GitHub repo —
+> see `references/test-scenarios.md`. First run found and fixed a real GitHub
+> write-access gap; second run's push was independently verified. One open
+> follow-up, not a blocker: confirm the connected Google Calendar is the right
+> account — recurring commitments haven't appeared in either real-data test.
 
 Format and task states are defined in `.claude/rules/execution-policy.md` and
 `.claude/rules/reporting.md`. This skill applies them and handles the periodic reviews.
