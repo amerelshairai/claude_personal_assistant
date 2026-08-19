@@ -6,7 +6,9 @@ when_to_use: Triggers on "what did you do", "status", "where are things", "morni
 
 # Execution Reporting
 
-> **STATUS: SCAFFOLD.** Format is fixed and live; morning/evening routines to be built.
+> **STATUS: METHODOLOGY DEFINED.** Format was already fixed and live; the
+> remaining questions are decided (see `references/DESIGN-QUESTIONS.md`). Test
+> scenarios still pending.
 
 Format and task states are defined in `.claude/rules/execution-policy.md` and
 `.claude/rules/reporting.md`. This skill applies them and handles the periodic reviews.
@@ -68,8 +70,37 @@ RECOMMEND
 Estimate accuracy over time is what makes capacity planning trustworthy — track it
 rather than quietly re-estimating.
 
-## To build
+## Report timing
 
-- Whether morning/evening run as scheduled tasks (`/scheduled-tasks`) or on demand
-- Where estimate-vs-actual history is stored for trend analysis
-- Weekly review format
+Morning/evening: **on demand only** — Amer asks when he wants one, no automatic
+scheduling. Weekly review: **scheduled**, every Friday 5:00pm Asia/Amman, via a
+recurring cloud routine (the `schedule` skill) — this is different from the daily
+reports specifically because it needs to persist across sessions, not fire only
+when Amer happens to be in one.
+
+## Estimate-vs-actual history
+
+No separate tracking file — reuses `time-orchestration`'s existing approach:
+derived fresh from Todoist each time (Duration field vs. completion-timestamp gap
+for tasks sharing a work-type label).
+
+## Weekly review format
+
+```
+WEEK IN REVIEW
+- Completed vs. planned, across all active projects
+
+ESTIMATE ACCURACY
+- Aggregated over the week (not a single day) — where estimates were off, by how much
+
+CAPACITY UTILIZATION
+- Available vs. required over the week, over/under
+
+CLIENT STATUS
+- Per memory/active-projects.md — state changes this week
+
+NEXT WEEK
+- Fixed: <calendar>
+- Carrying over: <items>
+- Risk: <deadline pressure>
+```
