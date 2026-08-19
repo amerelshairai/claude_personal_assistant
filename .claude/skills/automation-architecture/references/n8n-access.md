@@ -7,37 +7,25 @@
   original unresolved note below).
 - Also available: a **webhook connector**, visible through Claude's connectors.
 
-## Known issue: connection is not persistent (updated 2026-08-19)
-The tunnel/MCP connection does **not** reliably stay live — confirmed dropping both
-between sessions and (per Amer, 2026-08-19) potentially mid-session too, unlike
-Todoist/Calendar which stay authenticated once connected. A tool search for n8n
-tools may come back empty even when Amer believes it's connected. Confirmed
-empirically 2026-08-18: a tool search at the start of that session found no n8n
-tools available; they appeared a short time later without any explicit reconnect
-action in that instance — so the failure mode isn't fully consistent yet.
+## Known issue: connection is not persistent (root cause confirmed 2026-08-19)
+**Confirmed by Amer, not a mystery to diagnose:** n8n runs on his localhost, so a
+permanent MCP connection genuinely isn't possible — hypothesis 2 from the earlier
+version of this note (self-hosted instance/tunnel reachability), not an OAuth
+token-expiry issue. There is no fix to isolate here; this is architectural. The
+connection does **not** stay live session to session, and may drop mid-session too,
+unlike Todoist/Calendar which stay authenticated once connected.
 
 **Impact:** any routine/scheduled task that touches n8n (not just an interactive
-session) will silently fail if it fires while the connection is dropped — this
-matters for the same reason the weekly-review routine's GitHub write access
-mattered: an unattended failure nobody sees until they go looking.
+session) will fail if it fires while the connection is down — a cloud routine can't
+prompt Amer to reconnect the way an interactive session can. If a scheduled routine
+ever needs n8n, this is a real constraint on when/how it can run, not just a
+"check first" caveat.
 
-**Not yet isolated — two live hypotheses, per Amer:**
-1. n8n is connected via claude.ai's OAuth connector, and that token has a short
-   expiry that doesn't auto-refresh.
-2. n8n is connected via the self-hosted instance's own MCP endpoint (the Cloudflare
-   tunnel to Amer's localhost), which requires that instance to actually be up and
-   reachable — if it sleeps, restarts, or the tunnel URL changes, the connection
-   breaks independent of any OAuth token.
-
-**Diagnostic step, next time it drops:** check `/mcp` in Claude Code immediately and
-note the exact status shown — `needs auth` points to hypothesis 1 (re-auth fixes
-it); `unreachable`/`not found` points to hypothesis 2 (the n8n instance/tunnel
-itself needs to stay up). Amer to capture this next occurrence.
-
-**Standing rule** (see `memory/operating-rules.md`, 2026-08-18): tell Amer explicitly
-*before* any n8n build/update-workflow stage starts, so he can check/reconnect
-first — don't wait for a tool call to fail mid-task. This holds regardless of which
-hypothesis turns out to be right.
+**Standing rule** (see `memory/operating-rules.md`, 2026-08-18, confirmed
+2026-08-19): **always ask Amer before any n8n build/update-workflow stage starts**
+so he can make the MCP connection again — don't wait for a tool call to fail
+mid-task, and don't try to "fix" the persistence problem; it's inherent to a
+localhost-hosted instance.
 
 ## Tool set — CONFIRMED LIVE 2026-08-18
 24 tools available via the MCP connection above (all under the

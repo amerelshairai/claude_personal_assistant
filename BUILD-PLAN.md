@@ -117,9 +117,13 @@ guess, and guesses compound.
 
 ## Things to decide as you go
 
-- Should morning/evening reports run as scheduled tasks, or on demand?
-- Does `client-analyst` need siblings (e.g. a `researcher`, an `n8n-builder`), or does
-  one specialist plus skills cover it? Add a subagent only when parallelism or tool
-  restriction gives real value — not for tidiness.
+- ~~Should morning/evening reports run as scheduled tasks, or on demand?~~ —
+  **decided**: on-demand only (`execution-reporting`); weekly review is the one
+  that's scheduled.
+- ~~Does `client-analyst` need siblings...~~ — **decided, 2026-08-19**: no
+  siblings for now. `client-analyst` is confirmed as *the* subagent under the main
+  personal-assistant agent — one specialist covers it. Revisit only if real work
+  exposes a genuine parallelism/tool-restriction need, not before.
 - Which rules have proven important enough to move from `rules/` into enforced
-  `settings.json` deny rules or hooks?
+  `settings.json` deny rules or hooks? — still open, deliberately deferred until
+  real client work surfaces a real case.

@@ -12,20 +12,18 @@ when_to_use: Triggers on "design this automation", "how should I build", "n8n wo
 > every fix each scenario produced.
 >
 > **ENVIRONMENT NOTE (updated 2026-08-19):** An n8n MCP connector is configured
-> (`references/n8n-access.md`) but its connection is **not reliably persistent** —
-> confirmed dropping between sessions, and possibly mid-session too. Two live
-> hypotheses (OAuth token expiry vs. the self-hosted instance/tunnel itself going
-> unreachable) — not yet isolated; see `references/n8n-access.md` for the `/mcp`
-> diagnostic step to run next time it drops. **Tell Amer before any build/update-
-> workflow stage starts** so he can check/reconnect first (see
-> `memory/operating-rules.md`) — verify with a real read call (e.g.
-> `search_workflows`) before relying on it, don't assume a prior session's
-> connection carried over. If genuinely unavailable, this skill still produces
-> importable workflow JSON without executing against a live instance. Never claim a
-> workflow was deployed, tested, or executed without an actual tool result to show
-> for it. **`get_node_types` is broken with a captured, reproducible error**
-> (`references/n8n-access.md`) — see § Node parameter verification below for the
-> interim workaround.
+> (`references/n8n-access.md`) but **cannot stay permanently connected — confirmed
+> architectural, not a bug**: n8n runs on Amer's localhost, so the connection
+> requires him to re-establish it each time it's needed, and may drop mid-session
+> too. **Always ask Amer before any build/update-workflow stage starts** so he can
+> make the connection again (see `memory/operating-rules.md`) — verify with a real
+> read call (e.g. `search_workflows`) before relying on it, don't assume a prior
+> session's connection carried over. If genuinely unavailable, this skill still
+> produces importable workflow JSON without executing against a live instance.
+> Never claim a workflow was deployed, tested, or executed without an actual tool
+> result to show for it. **`get_node_types` is broken with a captured, reproducible
+> error** (`references/n8n-access.md`) — see § Node parameter verification below
+> for the interim workaround.
 
 ## Input → output
 

@@ -10,9 +10,10 @@ when_to_use: Triggers on "what should I do today", "can I fit this", "I have X h
 > against 3 synthetic scenarios (daily capacity check, urgent mid-week work against a
 > tight schedule, a deadline colliding with a fixed commitment) — see
 > `references/DESIGN-QUESTIONS.md` for the full reasoning and every fix each
-> scenario produced. One follow-up remains open: real per-weekday capacity figures
-> for `memory/user.md` (Friday's shape differs from a Tuesday) — on Amer to fill in;
-> not a blocker to using this skill.
+> scenario produced. **Friday's real capacity figure is now confirmed** (5h,
+> `memory/user.md`) — closing the one follow-up this skill had open. Friday's
+> content also defaults to Admin/Review work (weekly report + next-week planning),
+> not Build/Research, per `memory/user.md` § Working patterns.
 
 This is the reasoning layer, not an execution layer. It decides *what should happen*.
 `todoist-management` and `calendar-management` carry out the changes.
