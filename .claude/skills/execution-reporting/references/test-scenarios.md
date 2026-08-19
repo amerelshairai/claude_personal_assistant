@@ -44,7 +44,15 @@ while the recurring university/club commitments still don't appear in either wee
 checked. Reproduced across two runs, strengthening rather than resolving the
 wrong-account hypothesis.
 
-## Open follow-up (not a blocker, on Amer)
-Confirm whether the connected Google Calendar (`simplykitchen2006@gmail.com`) is
-actually the right account — recurring university/club commitments have now failed
-to appear across two independent real-data test runs.
+## Follow-up — resolved 2026-08-19
+Investigated directly after run 2: connected calendar had changed to
+`amerelshair.ai@lindrize.online` (the correct account — `simplykitchen2006@gmail.com`
+was a different, earlier session-only connection). Checked a full 3-week window
+(2026-08-16 to 2026-09-06) on the correct account: still only the one real event
+(the Aug 20 "Internal Meeting"), confirming this was never a wrong-account issue —
+the recurring university/club commitments genuinely had never been added to
+Calendar. Added both as real recurring events at Amer's request (`University`:
+Sun–Wed 11:30am–2:30pm; `Club`: Sun/Tue/Thu 5–9pm, both Asia/Amman, marked Busy,
+plainly editable). Verified the generated instances land correctly for the next
+two weeks. Future weekly reviews should now see these directly from Calendar
+without needing the memory-override rule for this specific gap.
