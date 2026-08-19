@@ -44,5 +44,21 @@ Key facts to have ready (pulled from whichever of `client-intelligence`/
 `business-analysis`/`project-planning` is relevant) → Open questions to raise →
 Decisions needed from Amer. **Internal only — never delivered to a client.**
 
-## Test scenarios
-To be built once 1–5 are locked, same pattern as every other skill.
+## Test scenarios — IN PROGRESS
+
+- **Scenario 1 — Nova Home Goods proposal, built from real prior-stage
+  artifacts**, run 2026-08-19 —
+  `references/test-scenarios/scenario-1-nova-proposal/`. Not synthetic input —
+  pulled from client-intelligence, automation-architecture, business-analysis
+  (GO verdict, price ~$500-650), and project-planning's existing test artifacts
+  for the same client, same discipline as project-planning's own tests. Confirmed
+  clean: no internal cost/margin/effort-hours leaked into the client-facing
+  draft; Payment Terms and Privacy & Data Handling (Amer's explicit template
+  additions) both got real content, not placeholders; milestone language matches
+  project-planning's plan exactly. **One real finding:** business-analysis
+  produced a price *range*, not a single number — a finished proposal needs one
+  figure. Handled by marking it `[AMER TO CONFIRM]` in the draft rather than
+  silently picking a midpoint, consistent with business-analysis's pricing
+  hard boundary. Not a methodology gap requiring a SKILL.md change — the
+  boundary already existed, this scenario just confirmed it holds when a range
+  (not a point estimate) is the upstream input.
