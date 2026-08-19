@@ -30,4 +30,15 @@
   starts** (not just when a tool call fails), tell Amer explicitly that this stage
   is coming so he can reconnect it first, rather than discovering the tool is
   unavailable mid-task. Applies to `automation-architecture` primarily, but to any
-  skill that ends up touching n8n.
+  skill that ends up touching n8n. **2026-08-19 update:** connection may also drop
+  mid-session, not just between sessions — root cause not yet isolated (OAuth
+  token expiry vs. the self-hosted n8n instance/tunnel itself going unreachable).
+  Next time it drops, check `/mcp` immediately and note the exact status shown
+  (`needs auth` vs `unreachable`/`not found`) — that distinguishes the two
+  hypotheses. See `automation-architecture/references/n8n-access.md`.
+- 2026-08-19 — `get_node_types` (n8n MCP) fails with a captured, reproducible error
+  (`Error: Invalid path - path traversal detected`), confirmed across two separate
+  sessions. Interim workaround now standing in `automation-architecture/SKILL.md`
+  § Node parameter verification: cross-check node parameters manually in the n8n
+  UI before relying on generated workflow code; never treat a `validate_workflow`
+  pass as proof they're correct.

@@ -11,20 +11,21 @@ when_to_use: Triggers on "design this automation", "how should I build", "n8n wo
 > logic check) — see `references/DESIGN-QUESTIONS.md` for the full reasoning and
 > every fix each scenario produced.
 >
-> **ENVIRONMENT NOTE (updated 2026-08-18):** An n8n MCP connector is configured and
-> **confirmed live** (`references/n8n-access.md`) — 24 tools, verified by a real
-> `search_workflows` call returning Amer's actual workflows. It runs against
-> Amer's localhost via a Cloudflare tunnel that he must **reconnect manually every
-> session** — it is not reliably live session to session, even though it's working
-> right now. **Tell Amer before any build/update-workflow stage starts** so he can
-> reconnect first (see `memory/operating-rules.md`) — verify with a real read call
-> (e.g. `search_workflows`) before relying on it, don't assume a prior session's
+> **ENVIRONMENT NOTE (updated 2026-08-19):** An n8n MCP connector is configured
+> (`references/n8n-access.md`) but its connection is **not reliably persistent** —
+> confirmed dropping between sessions, and possibly mid-session too. Two live
+> hypotheses (OAuth token expiry vs. the self-hosted instance/tunnel itself going
+> unreachable) — not yet isolated; see `references/n8n-access.md` for the `/mcp`
+> diagnostic step to run next time it drops. **Tell Amer before any build/update-
+> workflow stage starts** so he can check/reconnect first (see
+> `memory/operating-rules.md`) — verify with a real read call (e.g.
+> `search_workflows`) before relying on it, don't assume a prior session's
 > connection carried over. If genuinely unavailable, this skill still produces
 > importable workflow JSON without executing against a live instance. Never claim a
 > workflow was deployed, tested, or executed without an actual tool result to show
-> for it. **`get_node_types` is currently broken** (see `references/n8n-access.md`)
-> — do not treat a `validate_workflow` pass as proof of correct node parameters
-> while it's down; flag exact parameters as unconfirmed instead.
+> for it. **`get_node_types` is broken with a captured, reproducible error**
+> (`references/n8n-access.md`) — see § Node parameter verification below for the
+> interim workaround.
 
 ## Input → output
 
@@ -79,6 +80,27 @@ client actually needs, not a template workflow. What recurs is **trigger choice 
 requirement type**; see `references/n8n-patterns.md` for the running list (grows
 from real projects, never invented ahead of time). E.g.: customer support →
 webhook/Telegram trigger; CRM-building → often a Google Sheets trigger.
+
+## Node parameter verification (interim workaround, added 2026-08-19)
+
+`get_node_types` has failed identically across two separate sessions (2026-08-18,
+2026-08-19) — see `references/n8n-access.md` for the exact captured error. Treat it
+as a standing limitation, not a transient glitch, until proven otherwise:
+
+- **Never treat a `validate_workflow` pass as confirmation of correct node
+  parameters** — it checks structural well-formedness, not per-node schema
+  correctness (proven by feeding it deliberately wrong WhatsApp parameters, which
+  it still validated as fine).
+- For any node whose exact parameters can't be confirmed via `get_node_types`,
+  **flag them explicitly as unconfirmed/ASSUMED** in the design and in any
+  generated workflow code — never present them as verified.
+- **Interim workaround**: cross-check unfamiliar node parameters manually against
+  n8n's own UI (Amer has direct access; Claude doesn't) before Amer imports or
+  relies on generated workflow code. This is a real extra step, not optional,
+  until `get_node_types` is fixed.
+- If a future `get_node_types` call ever returns something other than the exact
+  captured error text, that's worth flagging immediately — it means the failure
+  mode changed.
 
 ## Documentation style — diagram-first
 

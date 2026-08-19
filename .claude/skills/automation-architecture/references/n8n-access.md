@@ -7,16 +7,37 @@
   original unresolved note below).
 - Also available: a **webhook connector**, visible through Claude's connectors.
 
-## The catch — reconnection required every session
-The tunnel/MCP connection does **not** stay live session to session — Amer has to
-reconnect it manually each time before it's usable. A tool search for n8n tools may
-come back empty even when Amer believes it's connected, simply because it hasn't
-been reconnected yet this session. Confirmed empirically 2026-08-18: a tool search
-at the start of this conversation found no n8n tools available.
+## Known issue: connection is not persistent (updated 2026-08-19)
+The tunnel/MCP connection does **not** reliably stay live — confirmed dropping both
+between sessions and (per Amer, 2026-08-19) potentially mid-session too, unlike
+Todoist/Calendar which stay authenticated once connected. A tool search for n8n
+tools may come back empty even when Amer believes it's connected. Confirmed
+empirically 2026-08-18: a tool search at the start of that session found no n8n
+tools available; they appeared a short time later without any explicit reconnect
+action in that instance — so the failure mode isn't fully consistent yet.
+
+**Impact:** any routine/scheduled task that touches n8n (not just an interactive
+session) will silently fail if it fires while the connection is dropped — this
+matters for the same reason the weekly-review routine's GitHub write access
+mattered: an unattended failure nobody sees until they go looking.
+
+**Not yet isolated — two live hypotheses, per Amer:**
+1. n8n is connected via claude.ai's OAuth connector, and that token has a short
+   expiry that doesn't auto-refresh.
+2. n8n is connected via the self-hosted instance's own MCP endpoint (the Cloudflare
+   tunnel to Amer's localhost), which requires that instance to actually be up and
+   reachable — if it sleeps, restarts, or the tunnel URL changes, the connection
+   breaks independent of any OAuth token.
+
+**Diagnostic step, next time it drops:** check `/mcp` in Claude Code immediately and
+note the exact status shown — `needs auth` points to hypothesis 1 (re-auth fixes
+it); `unreachable`/`not found` points to hypothesis 2 (the n8n instance/tunnel
+itself needs to stay up). Amer to capture this next occurrence.
 
 **Standing rule** (see `memory/operating-rules.md`, 2026-08-18): tell Amer explicitly
-*before* any n8n build/update-workflow stage starts, so he can reconnect first —
-don't wait for a tool call to fail mid-task.
+*before* any n8n build/update-workflow stage starts, so he can check/reconnect
+first — don't wait for a tool call to fail mid-task. This holds regardless of which
+hypothesis turns out to be right.
 
 ## Tool set — CONFIRMED LIVE 2026-08-18
 24 tools available via the MCP connection above (all under the
@@ -46,18 +67,34 @@ session-restart requirement as first guessed.
 `update_workflow` for changes → `archive_workflow` when retiring one). Follow this
 exactly — do not guess node parameter names; `get_node_types` is not optional.
 
-## Known issue: `get_node_types` is broken (found 2026-08-18)
-Every call fails with `Error: Invalid path - path traversal detected` — tested with
-a single simple node ID, no discriminators, and still failed. Isolated to this one
-tool: `get_sdk_reference`, `search_nodes`, and `validate_workflow` all work
-correctly. **This means exact node parameters cannot currently be confirmed**, and
-`validate_workflow` passing is **not** a safe substitute — it appears to check
-structural well-formedness, not per-node parameter correctness (confirmed by
-deliberately feeding it guessed WhatsApp node parameters, which it validated as
-`valid: true` anyway). Until this is fixed: treat any design's exact node
-parameters as unconfirmed/ASSUMED, flagged explicitly, never presented as verified
-just because `validate_workflow` passed. See
+## Known issue: `get_node_types` is broken (found 2026-08-18, still broken 2026-08-19)
+**Exact verbatim error, already captured — not an open diagnostic question:**
+```
+Error: Invalid path - path traversal detected
+```
+Reproduced 3 separate ways during the original test (all identical error):
+1. `get_node_types({ nodeIds: ["n8n-nodes-base.wait"] })` — plain string, no
+   discriminators.
+2. `get_node_types({ nodeIds: [{ nodeId: "n8n-nodes-base.webhook" }, ...6 more with
+   discriminators] })` — full batch call as the MCP server's own instructions
+   describe.
+3. `get_node_types({ nodeIds: ["n8n-nodes-base.manualTrigger"] })` — simplest
+   possible single call, isolated from the batch, still identical error.
+
+Isolated to this one tool: `get_sdk_reference`, `search_nodes`, and
+`validate_workflow` all work correctly with real results. **This means exact node
+parameters cannot currently be confirmed**, and `validate_workflow` passing is
+**not** a safe substitute — it appears to check structural well-formedness, not
+per-node parameter correctness (confirmed by deliberately feeding it guessed
+WhatsApp node parameters, which it validated as `valid: true` anyway). See
 `references/test-scenarios/scenario-2-connection-health/` for the full test.
+
+**Given this has now held across two separate days/sessions** (2026-08-18 and
+2026-08-19 checks), treat it as a standing limitation, not a one-off glitch — see
+the interim workaround now in `../SKILL.md` § Documentation style / node parameters.
+If a future call to `get_node_types` ever returns something *other* than this exact
+error text, that's the signal worth capturing verbatim and flagging — it would mean
+the failure mode changed, which matters for diagnosis.
 
 ## Permissions mapping, applying `../SKILL.md` § Permissions to the real tools
 - **Level 1 (execute, then report):** `search_workflows`, `get_workflow_details`,
