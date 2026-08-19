@@ -54,11 +54,20 @@
   and used that to compute a real deadline shortfall, not a fabricated one — which
   led to a new standing rule (Calendar-vs-memory precedence for recurring
   commitments) in `time-orchestration/SKILL.md`.
+- **`document-production` — STATUS: TESTED.** House style prioritizes structure/
+  searchability over visual polish (no brand assets yet) — see
+  `.claude/skills/document-production/references/DESIGN-QUESTIONS.md`. 3 real
+  templates built in `templates/` (proposal, ROI workbook shape, meeting-prep).
+  2 test scenarios, both built from real prior-stage artifacts for Nova Home
+  Goods rather than synthetic input: a client proposal (confirmed no internal
+  cost/margin leaks; added a hard rule that a proposal's price is never
+  finalized without Amer's explicit confirmation) and an ROI workbook with every
+  figure traced as a checked, correct formula. Meeting-prep template exists but
+  wasn't scenario-tested, per Amer — not a blocker.
 
 ## Not done
 
-`document-production`, `execution-reporting` are still scaffolds without
-methodology. `templates/` (top-level, for document-production) is still empty.
+`execution-reporting` is still a scaffold without methodology.
 
 ## Order to build
 
@@ -75,7 +84,7 @@ done, TESTED.
 
 ~~**6. `project-planning`**~~ — done, TESTED.
 
-**7. `document-production`** — house style, then templates.
+~~**7. `document-production`**~~ — done, TESTED.
 
 **8. `execution-reporting`** — the format already works; add morning/evening routines
 last, once the underlying skills produce trustworthy numbers.

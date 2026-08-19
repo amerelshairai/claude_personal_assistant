@@ -63,3 +63,22 @@ Decisions needed from Amer. **Internal only — never delivered to a client.**
   rule in `SKILL.md`**: a proposal's Investment figure is never finalized without
   Amer's explicit confirmation — applies generally, not just to the range case
   this scenario happened to surface.
+
+- **Scenario 2 — Nova Home Goods ROI workbook, real formulas verified**, run
+  2026-08-19 — `references/test-scenarios/scenario-2-nova-roi-workbook/`. Per
+  Amer's instruction, every figure was traced through as a checkable formula, not
+  just stated: checkout starts (400÷0.32=1,250), abandoned carts (1,250×0.68=850,
+  cross-checked against 1,250−400=850), exposure ($850×45=$38,250/day,
+  ×365=$13,961,250/year), recurring cost (×12). All verified arithmetically
+  correct. **No new methodology gaps** — this scenario mainly confirmed existing
+  rules hold under real numeric pressure: the no-invented-recovery-rate
+  discipline resisted the temptation to add an illustrative sensitivity table
+  even on a workbook meant to feel complete; the internal sheet correctly
+  avoided fabricating a margin percentage with no $/hour rate to compute one
+  from; the proposal test's pricing-confirmation rule held in this different
+  document type too. Annualization basis (×365) was explicitly checked against
+  the operating-days gap rather than assumed, and reasoned to be a different
+  question (order volume vs. support-staff scheduling).
+
+**Marked TESTED 2026-08-19** — meeting-prep scenario skipped per Amer, not
+blocking.

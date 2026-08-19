@@ -6,9 +6,12 @@ when_to_use: Triggers on "write the documentation", "create a proposal", "make a
 
 # Document Production
 
-> **STATUS: METHODOLOGY DEFINED.** Contract and methodology below are decided (see
-> `references/DESIGN-QUESTIONS.md` for the full reasoning behind each). Test
-> scenarios still pending.
+> **STATUS: TESTED.** Contract and methodology below are decided and exercised
+> against 2 scenarios (a client proposal and an ROI workbook, both built from real
+> prior-stage artifacts with checked arithmetic) — see
+> `references/DESIGN-QUESTIONS.md` for the full reasoning and every fix each
+> scenario produced. Meeting-prep template exists but wasn't scenario-tested, per
+> Amer — not a blocker.
 
 ## Use the format skills
 
