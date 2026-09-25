@@ -5,6 +5,15 @@ Scheduled Friday 5pm Asia/Amman run. Fired 17:08 Asia/Amman (14:08 UTC) — on s
 external scheduler, not one visible to CronList). Covers the Jordan work week Saturday
 2026-09-19 through today, Friday 2026-09-25.
 
+Note: a second scheduled run also fired for this same Friday slot (separate session,
+commit `efa85d4`) and pushed a report to this same path first. That run had Todoist and
+Google Calendar connectors connected but not enabled in its chat, so it could only
+report a connector-access gap — same pattern as the 2026-09-11 and 2026-09-18 duplicate
+runs. This run had full connector access, so its content — the report below —
+supersedes that one at this path; nothing from the connector-less run is lost, since it
+added no facts beyond "connectors were unavailable" and a repeat of the standing Wisal/
+Al Ghazal asks, both already carried in NEEDS YOU below.
+
 ## WEEK IN REVIEW
 
 - **OBSERVED — zero Todoist completions this week.** `find-completed-tasks` for
@@ -112,3 +121,7 @@ external scheduler, not one visible to CronList). Covers the Jordan work week Sa
   stops being invisible to planning — recurring gap across three reviews now.
 - Name the third "freelance project" implied by the shippability milestone (due
   10-07) — still unidentifiable from tool data.
+- The duplicate connector-less run this same slot flagged that Todoist/Calendar show
+  as `connected: true, enabledInChat: false` in its session — worth checking whether
+  that's a per-session toggle issue on the scheduled routine, since it's now happened
+  three weeks running (09-11, 09-18, 09-25).
