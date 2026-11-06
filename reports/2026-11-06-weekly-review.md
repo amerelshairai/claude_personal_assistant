@@ -8,6 +8,19 @@ scheduler. Treating this as a normal, full-week close-out, not a partial/manual-
 trigger snapshot. Window: Saturday 2026-10-31 through today, Friday 2026-11-06
 (matches the Sat–Fri window used in prior reviews).
 
+**Duplicate-trigger note (recurring, third consecutive week):** a second scheduled
+routine — "Personal Business Agent — Weekly Report" (trigger
+`trig_01JXMxVjrkQHAsfjJekHUCTm`) — also fired for this slot, 2026-11-06 14:14:09 UTC
+(2 minutes before this run), producing `reports/2026-11-06-weekly-report.md`. That
+run's Todoist and Calendar connectors were `enabledInChat: false` and it could not
+query either tool, so it fell back to repo-only data and flagged the gap. This run's
+connectors worked normally — all Todoist/Calendar data below is directly observed.
+The two routines are now inconsistent in what they can access, on top of the
+duplicate-output issue already flagged on 2026-10-23 and 2026-10-30. Note also: that
+report states Wisal Retreats is "~15 weeks / 104 days stale" as of today — this run
+computed **79 days** (2026-08-19 to 2026-11-06, verified via direct date
+subtraction); flagging the discrepancy rather than silently adopting either number.
+
 ## WEEK IN REVIEW
 
 - **OBSERVED — zero Todoist completions this week.** `find-completed-tasks`
@@ -140,6 +153,11 @@ trigger snapshot. Window: Saturday 2026-10-31 through today, Friday 2026-11-06
   priority.
 - Name the third "freelance project" implied by the shippability milestone — still
   unidentifiable from tool data.
+- Two separate scheduled routines are still firing for the same Friday slot (third
+  consecutive week — see note at top), and now with inconsistent connector access
+  between them. Worth consolidating to one routine, or at minimum fixing the
+  "Personal Business Agent — Weekly Report" trigger's `enabledInChat` setting so it
+  isn't flying blind every week.
 
 ## CHANGED
 
